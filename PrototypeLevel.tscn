@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://b1pj5vin0ysra"]
 
 [ext_resource type="PackedScene" uid="uid://cm5awkkrg7qsm" path="res://character_controller.tscn" id="1_ggxrk"]
+[ext_resource type="PackedScene" uid="uid://pr6agvxldvb3" path="res://navmeshTest.tscn" id="2_01j4u"]
+[ext_resource type="PackedScene" uid="uid://bgkyhcr8vchyo" path="res://nav_enemy.tscn" id="3_shtnt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ggxrk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -35,3 +37,18 @@ size = Vector3(30, 0.146, 30)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.325604, 0, 2.7732573)
 
 [node name="CharacterBody3D" parent="." unique_id=1868302625 instance=ExtResource("1_ggxrk")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 2, 0)
+
+[node name="NavMeshTestLevel" parent="." unique_id=2133991034 instance=ExtResource("2_01j4u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 20)
+
+[node name="NavEnemy" parent="." unique_id=744703773 instance=ExtResource("3_shtnt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 19)
+
+[node name="CharacterBody3D" parent="NavEnemy" index="0" unique_id=866103548 node_paths=PackedStringArray("player")]
+player = NodePath("../../CharacterBody3D")
+
+[node name="NavigationAgent3D" parent="NavEnemy/CharacterBody3D" index="0" unique_id=888567674]
+debug_enabled = true
+
+[editable path="NavEnemy"]

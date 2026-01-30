@@ -2,9 +2,19 @@
 
 [ext_resource type="Script" uid="uid://c1ivlqvxljs37" path="res://navigationEnemy.gd" id="1_w5ntj"]
 
-[node name="Node3D" type="Node3D" unique_id=744703773]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_w5ntj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2c0ij"]
+
+[node name="NavEnemy" type="Node3D" unique_id=744703773]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=866103548]
 script = ExtResource("1_w5ntj")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3D" unique_id=888567674]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=2001961593]
+mesh = SubResource("CapsuleMesh_w5ntj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=24302322]
+shape = SubResource("CapsuleShape3D_2c0ij")
