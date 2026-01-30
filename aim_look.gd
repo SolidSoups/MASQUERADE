@@ -40,7 +40,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 #Handles the aim look with the mouse
 func aim_look(event: InputEventMouseMotion)->void:
-	var motion: Vector2 = event.relative
+	var viewport_transform: Transform2D = get_tree().root.get_final_transform()
+	var motion: Vector2 = event.xformed_by(viewport_transform).relative
 	var degrees_per_unit: float = 0.001
 
 	motion *= mouse_sensitivity

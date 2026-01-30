@@ -15,6 +15,10 @@ run/main_scene="uid://b1pj5vin0ysra"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor]
+
+movie_writer/fps=90
+
 [input]
 
 move_up={

@@ -26,18 +26,3 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-
-var mouse_input: Vector2
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		var viewport_transform: Transform2D = get_tree().root.get_final_transform()
-		mouse_input += event.xformed_by(viewport_transform).relative
-
-
-func _process(delta: float) -> void:
-	# this is a function
-	print(mouse_input)
-
-	mouse_input = Vector2.ZERO
-	

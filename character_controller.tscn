@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cm5awkkrg7qsm"]
 
-[ext_resource type="Script" uid="uid://c30q4ymw57l5m" path="res://character_body_3d.gd" id="1_iwpo4"]
+[ext_resource type="Script" uid="uid://c30q4ymw57l5m" path="res://character_move.gd" id="1_vcr71"]
 [ext_resource type="Script" uid="uid://ho81alkh6rqh" path="res://aim_look.gd" id="2_vcr71"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m61q5"]
 
 [node name="CharacterController" type="CharacterBody3D" unique_id=1868302625]
-script = ExtResource("1_iwpo4")
+script = ExtResource("1_vcr71")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1769148338]
 shape = SubResource("CapsuleShape3D_m61q5")
@@ -22,3 +22,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 script = ExtResource("2_vcr71")
 character = NodePath("..")
 head = NodePath("../Head")
+mouse_sensitivity = 100
