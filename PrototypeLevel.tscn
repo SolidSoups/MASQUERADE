@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b1pj5vin0ysra"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m61q5"]
+
 [node name="Prototype" type="Node3D" unique_id=662123140]
 
 [node name="CSGC_World" type="CSGCombiner3D" parent="." unique_id=848089701]
@@ -9,5 +11,11 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4272461, 0)
 size = Vector3(30, 0.146, 30)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGC_World" unique_id=502675756]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0072665, 0, -5.697815)
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=459518678]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1134155069]
+shape = SubResource("CapsuleShape3D_m61q5")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=727060701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
