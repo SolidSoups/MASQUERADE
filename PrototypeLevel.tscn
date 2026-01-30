@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b1pj5vin0ysra"]
+
+[node name="Prototype" type="Node3D" unique_id=662123140]
+
+[node name="CSGC_World" type="CSGCombiner3D" parent="." unique_id=848089701]
+use_collision = true
+
+[node name="CSGBox_Plane" type="CSGBox3D" parent="CSGC_World" unique_id=1375469381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4272461, 0)
+size = Vector3(30, 0.146, 30)
