@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b1pj5vin0ysra"]
 
+[ext_resource type="Script" uid="uid://c30q4ymw57l5m" path="res://character_body_3d.gd" id="1_ggxrk"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m61q5"]
 
 [node name="Prototype" type="Node3D" unique_id=662123140]
@@ -12,6 +14,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4272461, 0)
 size = Vector3(30, 0.146, 30)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=459518678]
+script = ExtResource("1_ggxrk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1134155069]
 shape = SubResource("CapsuleShape3D_m61q5")
