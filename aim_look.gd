@@ -18,7 +18,7 @@ extends Node
 func _ready() -> void:
 	Input.set_use_accumulated_input(false)
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		if event.is_action_pressed("ui_cancel"):
 			get_tree().quit()

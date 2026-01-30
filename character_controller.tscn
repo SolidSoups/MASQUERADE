@@ -22,4 +22,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 script = ExtResource("2_vcr71")
 character = NodePath("..")
 head = NodePath("../Head")
-mouse_sensitivity = 100
+mouse_sensitivity = 1
