@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bgkyhcr8vchyo"]
+
+[ext_resource type="Script" uid="uid://c1ivlqvxljs37" path="res://navigationEnemy.gd" id="1_w5ntj"]
+
+[node name="Node3D" type="Node3D" unique_id=744703773]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=866103548]
+script = ExtResource("1_w5ntj")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3D" unique_id=888567674]
