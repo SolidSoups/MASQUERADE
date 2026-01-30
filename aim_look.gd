@@ -33,6 +33,23 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("ui_cancel"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
+		return
+
+	if event is InputEventMouseMotion:
+		aim_look(event)
+
+#Handles the aim look with the mouse
+func aim_look(event: InputEventMouseMotion)->void:
+	var motion: Vector2 = event.relative
+	var degrees_per_unit: float = 0.001
+
+	motion *= mouse_sensitivity
+	motion *= degrees_per_unit
+
+	add_yaw(motion.x)
+	add_pitch(motion.y)
+	clamp_pitch()
+
 #Rotates the character around the local y axis
 func add_yaw(amount: float)->void:
 	if is_zero_approx(amount):
