@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var LOS_ray: RayCast3D = $Detection/LOSRay
 @onready var detection_cone = $Detection
+@onready var body_collision: CollisionShape3D = $BodyCollision
 @export var player: CharacterBody3D
 @export var speed = 2.0
 @export var hostile = true
@@ -18,6 +19,8 @@ var direction = Vector3.DOWN
 
 func _ready():
 	actor_setup.call_deferred()
+	if speed == null:
+		speed = 2.0
 	
 func actor_setup():
 	await get_tree().physics_frame
@@ -30,7 +33,18 @@ func set_movement_target(movement_target: Vector3):
 
 	
 func _physics_process(delta: float) -> void:
+	
+
+	
 	print_debug(states.keys()[state])
+	
+	if detection_cone.overlaps_body(PlayerStateAutoload.playerNode) and hostile:
+		LOS_ray.global_rotation = Vector3(0,0,0)
+		LOS_ray.set_target_position((PlayerStateAutoload.get_player_pos() + Vector3(0,1,0)) - LOS_ray.global_position)
+		LOS_ray.force_raycast_update()
+		if !LOS_ray.is_colliding():
+			state = states.chasing
+		
 	if state == states.idle and is_on_floor():
 		#print_debug("wait",time_to_wait)
 		time_to_wait = time_to_wait - delta
@@ -48,9 +62,6 @@ func _physics_process(delta: float) -> void:
 			time_to_wait = randf_range(5.0, 10.0)
 		#print_debug(state)
 		
-		
-	
-		
 	if state == states.wandering:
 		if !wanderer:
 			state = states.idle
@@ -67,13 +78,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			direction = (nav_agent.get_next_path_position() - global_position).normalized()
 		#print_debug("wandering")
-		
-	if detection_cone.overlaps_body(PlayerStateAutoload.playerNode) and hostile:
-		LOS_ray.global_rotation = Vector3(0,0,0)
-		LOS_ray.set_target_position((PlayerStateAutoload.get_player_pos() + Vector3(0,1,0)) - LOS_ray.global_position)
-		LOS_ray.force_raycast_update()
-		if !LOS_ray.is_colliding():
-			state = states.chasing
 		
 	if state == states.looking:
 		#nav_agent.target_position = nav_agent.get_final_position()
@@ -100,7 +104,7 @@ func _physics_process(delta: float) -> void:
 			
 		else:
 			state = states.looking
-		
+	print_debug(speed)
 	velocity = direction * speed
 	#print_debug(direction)
 	look_at(nav_agent.get_next_path_position())

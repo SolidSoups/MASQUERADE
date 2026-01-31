@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://cxc4ifmoekumh"]
+[gd_scene format=3 uid="uid://dnbswlhxvlp23"]
 
-[ext_resource type="Material" uid="uid://cqtliqc2pmtk" path="res://materials/ground_material.tres" id="1_llrfs"]
+[ext_resource type="Material" uid="uid://cqtliqc2pmtk" path="res://materials/ground_material.tres" id="1_3y4m4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_j5nvb"]
-material = ExtResource("1_llrfs")
+material = ExtResource("1_3y4m4")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j5nvb"]
 points = PackedVector3Array(1.0158731, 0.015873017, 1.0158731, -1.0158731, -0.015873017, -1.0158731, -1.0158731, 0.015873017, -1.0158731, 1.0158731, -0.015873017, -1.0158731, -1.0158731, -0.015873017, 1.0158731, -1.0158731, 0.015873017, 1.0158731, 1.0158731, 0.015873017, -1.0158731, 1.0158731, -0.015873017, 1.0158731)
@@ -12,7 +12,7 @@ points = PackedVector3Array(1.0158731, 0.015873017, 1.0158731, -1.0158731, -0.01
 
 [node name="floor" type="MeshInstance3D" parent="." unique_id=996204729]
 transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0)
-material_override = ExtResource("1_llrfs")
+material_override = ExtResource("1_3y4m4")
 mesh = SubResource("PlaneMesh_j5nvb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="floor" unique_id=96848200]
@@ -23,7 +23,7 @@ shape = SubResource("ConvexPolygonShape3D_j5nvb")
 [node name="spawn_floor" type="MeshInstance3D" parent="." unique_id=1004689634]
 transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0)
 visible = false
-material_override = ExtResource("1_llrfs")
+material_override = ExtResource("1_3y4m4")
 mesh = SubResource("PlaneMesh_j5nvb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="spawn_floor" unique_id=208086801]

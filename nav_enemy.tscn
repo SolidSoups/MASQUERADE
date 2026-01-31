@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c1ivlqvxljs37" path="res://navigationEnemy.gd" id="1_w5ntj"]
 [ext_resource type="Texture2D" uid="uid://b8kx3dal54jm" path="res://art/jimbob.png" id="2_2c0ij"]
+[ext_resource type="Script" uid="uid://npkfsem41fsr" path="res://enemy_interact_box.gd" id="3_185id"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_w5ntj"]
 
@@ -27,6 +28,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1hpgq"]
+size = Vector3(1, 1, 0.5)
+
 [node name="NavEnemy" type="Node3D" unique_id=744703773]
 
 [node name="EnemyBody3D" type="CharacterBody3D" parent="." unique_id=866103548]
@@ -43,7 +47,7 @@ debug_enabled = true
 visible = false
 mesh = SubResource("CapsuleMesh_w5ntj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyBody3D" unique_id=24302322]
+[node name="BodyCollision" type="CollisionShape3D" parent="EnemyBody3D" unique_id=24302322]
 shape = SubResource("CapsuleShape3D_2c0ij")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="EnemyBody3D" unique_id=1209325795]
@@ -67,3 +71,12 @@ collide_with_areas = true
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 billboard = 2
 sprite_frames = SubResource("SpriteFrames_1hpgq")
+
+[node name="EnemyInteractBox" type="Area3D" parent="EnemyBody3D" unique_id=479489039]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("3_185id")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyBody3D/EnemyInteractBox" unique_id=2018061259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+shape = SubResource("BoxShape3D_1hpgq")

@@ -47,6 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 19)
 
 [node name="EnemyBody3D" parent="NavEnemy" index="0" unique_id=866103548 node_paths=PackedStringArray("player")]
 player = NodePath("../../CharacterBody3D")
+speed = 2.0
 
 [editable path="NavMeshTestLevel"]
 [editable path="NavEnemy"]
