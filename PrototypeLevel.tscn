@@ -45,11 +45,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 20)
 [node name="NavEnemy" parent="." unique_id=744703773 instance=ExtResource("3_shtnt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 19)
 
-[node name="CharacterBody3D" parent="NavEnemy" index="0" unique_id=866103548 node_paths=PackedStringArray("player")]
+[node name="EnemyBody3D" parent="NavEnemy" index="0" unique_id=866103548 node_paths=PackedStringArray("player")]
 player = NodePath("../../CharacterBody3D")
-speed = 2.0
 
-[node name="NavigationAgent3D" parent="NavEnemy/CharacterBody3D" index="0" unique_id=888567674]
-debug_enabled = true
-
+[editable path="NavMeshTestLevel"]
 [editable path="NavEnemy"]
