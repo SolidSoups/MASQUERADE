@@ -43,6 +43,12 @@ func spawn_wall(x: int, y: int, direction: String):
 		wallx_gridMap.set_cell_item(pos3, WALLX_INDEX)
 	elif direction == "z":
 		wallz_gridMap.set_cell_item(pos3, WALLZ_INDEX )
+func spawn_room_wall(x: int, y: int, direction: String):
+	var pos3 = Vector3i(x, 0, y)
+	if direction == "x":
+		wallx_gridMap.set_cell_item(pos3, ROOM_WALLX_INDEX)
+	elif direction == "z":
+		wallz_gridMap.set_cell_item(pos3, ROOM_WALLZ_INDEX)
 
 func spawn_door(x: int, y: int, direction: String):
 	var pos3 = Vector3i(x, 0, y)
@@ -50,13 +56,6 @@ func spawn_door(x: int, y: int, direction: String):
 		wallx_gridMap.set_cell_item(pos3, WALLX_DOOR_INDEX)
 	elif direction == "z":
 		wallz_gridMap.set_cell_item(pos3, WALLZ_DOOR_INDEX )
-
-func spawn_room_wall(x: int, y: int, direction: String):
-	var pos3 = Vector3i(x, 0, y)
-	if direction == "x":
-		wallx_gridMap.set_cell_item(pos3, ROOM_WALLX_INDEX)
-	elif direction == "z":
-		wallz_gridMap.set_cell_item(pos3, ROOM_WALLZ_INDEX)
 func spawn_room_door(x: int, y: int, direction: String):
 	var pos3 = Vector3i(x, 0, y)
 	if direction == "x":

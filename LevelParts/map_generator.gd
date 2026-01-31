@@ -130,7 +130,7 @@ func has_wall_z(x: int, y: int) -> bool:
 	return wall_z[y * width + x]
 
 func is_room(x: int, y: int) -> bool:
-	if y * width + x >= width * height:
+	if !in_bounds(x, y):
 		return false
 	return tags[y * width + x] == Tag.ROOM
 
