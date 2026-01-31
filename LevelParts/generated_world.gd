@@ -10,8 +10,8 @@ extends Node3D
 const FLOOR_INDEX: int = 0
 const SPAWN_FLOOR_INDEX: int = 1
 const WALLX_INDEX: int = 2
-const WALLZ_INDEX: int = 3
-const WALLX_DOOR_INDEX: int = 4
+const WALLX_DOOR_INDEX: int = 3
+const WALLZ_INDEX: int = 4
 const WALLZ_DOOR_INDEX: int = 5
 
 func bake_navigation_async()->void:
