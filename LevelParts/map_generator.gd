@@ -133,5 +133,3 @@ func is_room(x: int, y: int) -> bool:
 	if y * width + x >= width * height:
 		return false
 	return tags[y * width + x] == Tag.ROOM
-
-

@@ -12,10 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://e1gnam06eduq" path="res://art/face_nose.png" id="10_d3ie8"]
 [ext_resource type="Texture2D" uid="uid://u37om2lubsq7" path="res://art/face_mouth.png" id="11_m4l1o"]
 [ext_resource type="Texture2D" uid="uid://c1p7bc3g04ayr" path="res://art/face_ears.png" id="12_a23hk"]
+[ext_resource type="Texture2D" uid="uid://b3mfwr4oqfk8h" path="res://art/big_mask.png" id="13_d3ie8"]
 [ext_resource type="Script" uid="uid://bhqxhsvj7djd6" path="res://Character/Status.gd" id="13_qp0ij"]
 [ext_resource type="Script" uid="uid://q5hh46enek66" path="res://Character/dialogue_menu.gd" id="14_vd2yh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m61q5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d3ie8"]
 
 [sub_resource type="GDScript" id="GDScript_d3ie8"]
 script/source = "extends CanvasLayer
@@ -133,6 +136,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_m4l1o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_d3ie8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="CharacterController" type="CharacterBody3D" unique_id=1868302625]
 collision_layer = 4
 collision_mask = 7
@@ -141,6 +158,14 @@ script = ExtResource("1_vcr71")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1769148338]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_m61q5")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2003486169]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2094101381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_d3ie8")
 
 [node name="Head" type="Node3D" parent="." unique_id=1575053583]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -169,9 +194,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-metadata/_edit_use_anchors_ = true
 
-[node name="Mask" type="AnimatedSprite2D" parent="CanvasLayer/Control" unique_id=807388261]
+[node name="SuspicionMask" type="AnimatedSprite2D" parent="CanvasLayer/Control" unique_id=807388261]
 position = Vector2(108.99999, 496.99997)
 scale = Vector2(0.08487906, 0.08487905)
 sprite_frames = SubResource("SpriteFrames_3fyo1")
@@ -204,6 +228,22 @@ position = Vector2(1052, 507)
 scale = Vector2(0.08, 0.08)
 sprite_frames = SubResource("SpriteFrames_ghh6f")
 frame = 1
+
+[node name="BigMask" type="AnimatedSprite2D" parent="CanvasLayer/Control" unique_id=338933418]
+z_index = -1
+position = Vector2(576, 392)
+rotation = -1.5707964
+scale = Vector2(0.2217693, 0.1818598)
+sprite_frames = SubResource("SpriteFrames_m4l1o")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control" unique_id=1945055446]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 288.0
+offset_right = 40.0
+offset_bottom = 611.0
+max_value = 5.0
+fill_mode = 3
 
 [node name="Status" type="Node" parent="." unique_id=1445624]
 script = ExtResource("13_qp0ij")

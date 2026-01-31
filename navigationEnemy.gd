@@ -37,12 +37,14 @@ func _physics_process(delta: float) -> void:
 	
 	print_debug(states.keys()[state])
 	
-	if detection_cone.overlaps_body(PlayerStateAutoload.playerNode) and hostile:
-		LOS_ray.global_rotation = Vector3(0,0,0)
-		LOS_ray.set_target_position((PlayerStateAutoload.get_player_pos() + Vector3(0,1,0)) - LOS_ray.global_position)
-		LOS_ray.force_raycast_update()
-		if !LOS_ray.is_colliding():
-			state = states.chasing
+	if detection_cone.overlaps_body(PlayerStateAutoload.playerNode):
+		
+		if hostile:
+			LOS_ray.global_rotation = Vector3(0,0,0)
+			LOS_ray.set_target_position((PlayerStateAutoload.get_player_pos() + Vector3(0,1,0)) - LOS_ray.global_position)
+			LOS_ray.force_raycast_update()
+			if !LOS_ray.is_colliding():
+				state = states.chasing
 		
 	if state == states.idle and is_on_floor():
 		#print_debug("wait",time_to_wait)
