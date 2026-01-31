@@ -1,6 +1,6 @@
 extends Node
 
-var playerNode: CharacterBody3D
+var playerNode: CharacterBody3D = null
 
 func get_player_pos()->Vector3:
 	if playerNode:
