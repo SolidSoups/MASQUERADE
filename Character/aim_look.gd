@@ -4,6 +4,7 @@ extends Node
 @export_group("Nodes")
 @export var character: CharacterBody3D
 @export var head: Node3D
+@export var camera: Camera3D
 
 #Settings
 @export_group("Settings")
@@ -17,6 +18,7 @@ extends Node
 
 func _ready() -> void:
 	Input.set_use_accumulated_input(false)
+	camera.make_current()
 
 func _input(event: InputEvent) -> void:
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:

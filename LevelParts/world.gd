@@ -2,6 +2,7 @@ extends Node3D
 
 @export_group("Nodes")
 @export var gen_world: Node
+@export var character_controller: PackedScene
 
 # Generates a random level with the size determining the rows and columns size (identical)
 func generate_random_level(size: int) -> void:
@@ -40,8 +41,16 @@ func generate_random_level(size: int) -> void:
 				gen_world.spawn_door(x, y, "z")
 				gen_world.spawn_wall(x, y, "x")
 
-			
+	# finally set the spawn floor so we can get it in script
+	var spawn_adjusted = roundi(size / 2.0)
+	gen_world.spawn_spawn_floor(spawn_adjusted, spawn_adjusted)
 
 func _ready() -> void:
-	generate_random_level(3)
+	# Generate world and bake navigation
+	generate_random_level(4)
+	gen_world.bake_navigation_async()
+
+	var newPlayer = character_controller.instantiate()
+	add_child(newPlayer)
+	newPlayer.global_position = gen_world.get_spawn_pos() + Vector3(0, 0.2,0)
 

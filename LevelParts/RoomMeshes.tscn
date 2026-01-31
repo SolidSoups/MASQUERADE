@@ -37,6 +37,15 @@ mesh = SubResource("PlaneMesh_j5nvb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" unique_id=1969331991]
 shape = SubResource("ConvexPolygonShape3D_j5nvb")
 
+[node name="spawn_floor" type="MeshInstance3D" parent="." unique_id=1004689634]
+transform = Transform3D(7, 0, 0, 0, 1, 0, 0, 0, 7, 0, 0, 0)
+mesh = SubResource("PlaneMesh_j5nvb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="spawn_floor" unique_id=208086801]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="spawn_floor/StaticBody3D" unique_id=855854849]
+shape = SubResource("ConvexPolygonShape3D_j5nvb")
+
 [node name="wall_x2" type="MeshInstance3D" parent="." unique_id=1923686876]
 transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 14, 7.25, 1, 0)
 mesh = SubResource("BoxMesh_j5nvb")
