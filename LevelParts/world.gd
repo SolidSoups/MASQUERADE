@@ -2,12 +2,15 @@ extends Node3D
 
 @export_group("Nodes")
 @export var gen_world: Node
+@export var gen_map: Node
 @export var character_controller: PackedScene
 @export var enemy: PackedScene
 
 # Generates a random level with the size determining the rows and columns size (identical)
 func generate_random_level(size: int) -> void:
 	randomize()
+	gen_map.init()
+	gen_map.generate()
 	for x in range(size):
 		for y in range(size):
 			# generate a floor at the position

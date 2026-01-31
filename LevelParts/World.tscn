@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cm5awkkrg7qsm" path="res://Character/character_controller.tscn" id="4_6kv5d"]
 [ext_resource type="Script" uid="uid://c5wsai1va76et" path="res://LevelParts/generated_world.gd" id="4_52tcn"]
 [ext_resource type="MeshLibrary" uid="uid://dspdx5jgj1dxh" path="res://LevelParts/level_mesh_library.meshlib" id="5_52tcn"]
+[ext_resource type="Script" uid="uid://dmtaa6xcu1m6v" path="res://LevelParts/map_generator.gd" id="6_kvb8d"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_6kv5d"]
 
@@ -35,3 +36,6 @@ cell_size = Vector3(8, 8, 8)
 [node name="GridMap_floors" type="GridMap" parent="WorldNavMesh/GeneratedWorld" unique_id=483985722]
 mesh_library = ExtResource("5_52tcn")
 cell_size = Vector3(8, 8, 8)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=954497573]
+script = ExtResource("6_kvb8d")
