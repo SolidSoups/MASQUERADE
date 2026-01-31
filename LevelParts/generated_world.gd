@@ -42,6 +42,7 @@ func spawn_wall(x: int, y: int, direction: String):
 	elif direction == "z":
 		wallz_gridMap.set_cell_item(pos3, WALLZ_INDEX )
 
+
 func spawn_door(x: int, y: int, direction: String):
 	var pos3 = Vector3i(x, 0, y)
 	if direction == "x":

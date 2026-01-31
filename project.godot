@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Masquerade"
-run/main_scene="uid://b1pj5vin0ysra"
+run/main_scene="uid://beo2j2s7gv4r6"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+PlayerStateAutoload="*uid://d0ckxmnc3ma37"
 
 [editor]
 

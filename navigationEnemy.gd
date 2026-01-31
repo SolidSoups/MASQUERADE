@@ -8,16 +8,15 @@ extends CharacterBody3D
 @export var hostile = true
 @export var wanderer = true
 @onready var movement_target_position: Vector3 = player.position
+
 enum states{idle, chasing, looking, wandering}
 var state = states.idle
 var time_to_wait = randf_range(5.0, 10.0)
 var wander = randi_range(0,1)
 var new_wander = true
 var direction = Vector3.DOWN
+
 func _ready():
-
-
-	
 	actor_setup.call_deferred()
 	
 func actor_setup():

@@ -3,6 +3,7 @@ extends Node3D
 @export_group("Nodes")
 @export var gen_world: Node
 @export var character_controller: PackedScene
+@export var enemy: PackedScene
 
 # Generates a random level with the size determining the rows and columns size (identical)
 func generate_random_level(size: int) -> void:
@@ -50,7 +51,14 @@ func _ready() -> void:
 	generate_random_level(4)
 	gen_world.bake_navigation_async()
 
+	#Spawn player
 	var newPlayer = character_controller.instantiate()
 	add_child(newPlayer)
 	newPlayer.global_position = gen_world.get_spawn_pos() + Vector3(0, 0.2,0)
+
+	#Spawn test enemy
+	var new_enemy = enemy.instantiate()
+	add_child(new_enemy)
+	new_enemy.global_position = gen_world.get_spawn_pos() + Vector3(2, 0.2, 0)
+	new_enemy.get_script().player = newPlayer
 
