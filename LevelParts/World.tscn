@@ -16,8 +16,12 @@ sky_material = SubResource("ProceduralSkyMaterial_q7exi")
 [sub_resource type="Environment" id="Environment_q1fy0"]
 background_mode = 2
 sky = SubResource("Sky_nsrvc")
-tonemap_mode = 2
+ambient_light_sky_contribution = 0.5
+tonemap_mode = 3
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+volumetric_fog_length = 256.0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_6kv5d"]
 
@@ -29,6 +33,8 @@ enemy = ExtResource("3_52tcn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1216443559]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.4459064, 0.50411147, 0.6088299, 1)
+light_energy = 0.492
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1843048140]
