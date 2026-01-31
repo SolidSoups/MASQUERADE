@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://d0as7rx7ki11p"]
+
+[ext_resource type="Material" uid="uid://cqtliqc2pmtk" path="res://materials/ground_material.tres" id="1_36t85"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j5nvb"]
+material = ExtResource("1_36t85")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j5nvb"]
+points = PackedVector3Array(1.0158731, 0.015873017, 1.0158731, -1.0158731, -0.015873017, -1.0158731, -1.0158731, 0.015873017, -1.0158731, 1.0158731, -0.015873017, -1.0158731, -1.0158731, -0.015873017, 1.0158731, -1.0158731, 0.015873017, 1.0158731, 1.0158731, 0.015873017, -1.0158731, 1.0158731, -0.015873017, 1.0158731)
+
+[node name="RoomMeshes_CSG" type="Node3D" unique_id=1499104781]
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=996204729]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0)
+material_override = ExtResource("1_36t85")
+mesh = SubResource("PlaneMesh_j5nvb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor" unique_id=96848200]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" unique_id=1969331991]
+shape = SubResource("ConvexPolygonShape3D_j5nvb")
+
+[node name="spawn_floor" type="MeshInstance3D" parent="." unique_id=1004689634]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0)
+visible = false
+material_override = ExtResource("1_36t85")
+mesh = SubResource("PlaneMesh_j5nvb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="spawn_floor" unique_id=208086801]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="spawn_floor/StaticBody3D" unique_id=855854849]
+shape = SubResource("ConvexPolygonShape3D_j5nvb")
+
+[node name="wall" type="CSGCombiner3D" parent="." unique_id=1970210437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="wall" unique_id=1555716883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+size = Vector3(0.5, 3.75, 8)
+
+[node name="door_wall" type="CSGCombiner3D" parent="." unique_id=1565432205]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="door_wall" unique_id=805524859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -2.375)
+size = Vector3(0.5, 3.75, 3.25)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="door_wall" unique_id=917984296]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 2.375)
+size = Vector3(0.5, 3.75, 3.25)

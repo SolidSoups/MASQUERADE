@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cwbi1g1akaw8t" path="res://LevelParts/world.gd" id="1_nsrvc"]
 [ext_resource type="PackedScene" uid="uid://bgkyhcr8vchyo" path="res://nav_enemy.tscn" id="3_52tcn"]
-[ext_resource type="MeshLibrary" uid="uid://c6dwo4s6ijlx5" path="res://LevelParts/NewLevelLibrary.meshlib" id="3_q1fy0"]
 [ext_resource type="PackedScene" uid="uid://cm5awkkrg7qsm" path="res://Character/character_controller.tscn" id="4_6kv5d"]
 [ext_resource type="Script" uid="uid://c5wsai1va76et" path="res://LevelParts/generated_world.gd" id="4_52tcn"]
+[ext_resource type="MeshLibrary" uid="uid://dspdx5jgj1dxh" path="res://LevelParts/level_mesh_library.meshlib" id="5_52tcn"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_6kv5d"]
 
@@ -25,13 +25,13 @@ wallz_gridMap = NodePath("GridMap_walls_z")
 nav_mesh = NodePath("..")
 
 [node name="GridMap_walls_x" type="GridMap" parent="WorldNavMesh/GeneratedWorld" unique_id=935049626]
-mesh_library = ExtResource("3_q1fy0")
-cell_size = Vector3(14, 14, 14)
+mesh_library = ExtResource("5_52tcn")
+cell_size = Vector3(8, 8, 8)
 
 [node name="GridMap_walls_z" type="GridMap" parent="WorldNavMesh/GeneratedWorld" unique_id=434532133]
-mesh_library = ExtResource("3_q1fy0")
-cell_size = Vector3(14, 14, 14)
+mesh_library = ExtResource("5_52tcn")
+cell_size = Vector3(8, 8, 8)
 
 [node name="GridMap_floors" type="GridMap" parent="WorldNavMesh/GeneratedWorld" unique_id=483985722]
-mesh_library = ExtResource("3_q1fy0")
-cell_size = Vector3(14, 14, 14)
+mesh_library = ExtResource("5_52tcn")
+cell_size = Vector3(8, 8, 8)
