@@ -1,0 +1,30 @@
+class_name GeneratedWorld
+extends Node3D
+
+@export_group("Nodes")
+@export var floor_gridMap: GridMap
+@export var wallx_gridMap: GridMap
+@export var walldx_gridMap: GridMap
+@export var wallz_gridMap: GridMap
+@export var walldz_gridMap: GridMap
+
+
+const FLOOR_INDEX: int = 0
+const WALLX_INDEX: int = 1
+const WALLDX_INDEX: int = 2
+const WALLZ_INDEX: int = 3
+const WALLDZ_INDEX: int = 4
+
+func spawn_floor(x: int, y: int)->void:
+	floor_gridMap.set_cell_item(Vector3i(x, 0, y), FLOOR_INDEX)	
+
+func spawn_wall(x: int, y: int, direction: String):
+	var pos3 = Vector3i(x, 0, y)
+	if direction == "x":
+		wallx_gridMap.set_cell_item(pos3, WALLX_INDEX)
+	elif direction == "-x":
+		walldx_gridMap.set_cell_item(pos3, WALLDX_INDEX)
+	elif direction == "z":
+		wallz_gridMap.set_cell_item(pos3, WALLZ_INDEX)
+	elif direction == "-z":
+		walldz_gridMap.set_cell_item(pos3, WALLDZ_INDEX)
