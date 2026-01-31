@@ -32,7 +32,10 @@ func generate_random_level(size: int) -> void:
 			var is_x_room = gen_map.is_room(x+1, y)
 			var is_z_room = gen_map.is_room(x, y+1)
 			if gen_map.has_wall_x(x, y):
-				gen_world.spawn_wall(x, y, "x")
+				if is_this_room or is_x_room:
+					gen_world.spawn_room_wall(x, y, "x")
+				else:
+					gen_world.spawn_wall(x, y, "x")
 			else:
 				gen_world.spawn_door(x, y, "x")
 			if gen_map.has_wall_z(x, y):
