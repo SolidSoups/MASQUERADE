@@ -13,8 +13,35 @@
 [ext_resource type="Texture2D" uid="uid://u37om2lubsq7" path="res://art/face_mouth.png" id="11_m4l1o"]
 [ext_resource type="Texture2D" uid="uid://c1p7bc3g04ayr" path="res://art/face_ears.png" id="12_a23hk"]
 [ext_resource type="Script" uid="uid://bhqxhsvj7djd6" path="res://Character/Status.gd" id="13_qp0ij"]
+[ext_resource type="Script" uid="uid://q5hh46enek66" path="res://Character/dialogue_menu.gd" id="14_vd2yh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m61q5"]
+
+[sub_resource type="GDScript" id="GDScript_d3ie8"]
+script/source = "extends CanvasLayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_button_2_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_button_3_pressed() -> void:
+	pass # Replace with function body.
+"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3fyo1"]
 animations = [{
@@ -131,6 +158,7 @@ camera = NodePath("../Head/CameraContainer/Camera3D")
 mouse_sensitivity = 100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1039969157]
+script = SubResource("GDScript_d3ie8")
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=212536970]
 layout_mode = 3
@@ -179,3 +207,35 @@ frame = 1
 
 [node name="Status" type="Node" parent="." unique_id=1445624]
 script = ExtResource("13_qp0ij")
+
+[node name="DialogueMenu" type="CanvasLayer" parent="." unique_id=357295301]
+process_mode = 3
+script = ExtResource("14_vd2yh")
+
+[node name="BoxContainer" type="BoxContainer" parent="DialogueMenu" unique_id=475931932]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -212.0
+offset_top = -230.0
+offset_right = 212.5
+offset_bottom = -129.0
+grow_horizontal = 2
+grow_vertical = 0
+vertical = true
+
+[node name="Button" type="Button" parent="DialogueMenu/BoxContainer" unique_id=907167931]
+layout_mode = 2
+text = "example text correct"
+
+[node name="Button2" type="Button" parent="DialogueMenu/BoxContainer" unique_id=1633236965]
+layout_mode = 2
+text = "example less correct"
+
+[node name="Button3" type="Button" parent="DialogueMenu/BoxContainer" unique_id=21595106]
+layout_mode = 2
+text = "example suspect"
+
+[connection signal="pressed" from="DialogueMenu/BoxContainer/Button" to="DialogueMenu" method="_on_button_pressed"]

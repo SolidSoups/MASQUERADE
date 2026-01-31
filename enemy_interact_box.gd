@@ -9,4 +9,4 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if get_overlapping_bodies().has(PlayerStateAutoload.playerNode):
-		print_debug("YIPPEEE")
+		PlayerStateAutoload.open_dialogue()

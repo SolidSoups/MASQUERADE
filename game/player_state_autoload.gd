@@ -5,9 +5,19 @@ var eyes = false
 var nose = false
 var mouth = false
 var ears = false
+var dialogue = false
 
 enum sus_levels{none, low, medium, high, exposed}
-@export var suspicion = sus_levels.none
+var suspicion = sus_levels.none
+
+func open_dialogue():
+	dialogue = true
+	
+func close_dialogue():
+	dialogue = false
+
+func increase_sus_level():
+	suspicion = suspicion + 1
 
 func get_player_pos()->Vector3:
 	if playerNode:

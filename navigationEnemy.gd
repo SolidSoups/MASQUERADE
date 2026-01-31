@@ -19,8 +19,7 @@ var direction = Vector3.DOWN
 
 func _ready():
 	actor_setup.call_deferred()
-	if speed == null:
-		speed = 2.0
+	
 	
 func actor_setup():
 	await get_tree().physics_frame

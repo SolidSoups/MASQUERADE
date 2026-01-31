@@ -73,7 +73,7 @@ billboard = 2
 sprite_frames = SubResource("SpriteFrames_1hpgq")
 
 [node name="EnemyInteractBox" type="Area3D" parent="EnemyBody3D" unique_id=479489039]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_185id")
 
