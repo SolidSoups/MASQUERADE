@@ -13,31 +13,27 @@ points = PackedVector3Array(5, 2.5, 2.5, 5, -0.5, 2.5, 5, 2.5, -2.5, 5, -0.5, -2
 
 [node name="NavEnemy" type="Node3D" unique_id=744703773]
 
-[node name="EnemyBody3D" type="CharacterBody3D" parent="." unique_id=866103548]
-collision_layer = 2
-collision_mask = 7
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=866103548]
 script = ExtResource("1_w5ntj")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="EnemyBody3D" unique_id=888567674]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3D" unique_id=888567674]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyBody3D" unique_id=2001961593]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=2001961593]
 mesh = SubResource("CapsuleMesh_w5ntj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyBody3D" unique_id=24302322]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=24302322]
 shape = SubResource("CapsuleShape3D_2c0ij")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="EnemyBody3D" unique_id=1209325795]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1209325795]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, -0.5)
 mesh = SubResource("BoxMesh_2c0ij")
 
-[node name="Detection" type="Area3D" parent="EnemyBody3D" unique_id=1768663511]
+[node name="Detection" type="Area3D" parent="CharacterBody3D" unique_id=1768663511]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 4
 
-[node name="DetectionCone" type="CollisionShape3D" parent="EnemyBody3D/Detection" unique_id=1460956863]
+[node name="DetectionCone" type="CollisionShape3D" parent="CharacterBody3D/Detection" unique_id=1460956863]
 shape = SubResource("ConvexPolygonShape3D_w5ntj")
 
-[node name="LOSRay" type="RayCast3D" parent="EnemyBody3D/Detection" unique_id=884460458]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-collide_with_areas = true
+[node name="LOSRay" type="RayCast3D" parent="CharacterBody3D/Detection" unique_id=884460458]
