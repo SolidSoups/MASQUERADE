@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var speed = 2.0
 @export var hostile = true
 @export var wanderer = true
-@onready var movement_target_position: Vector3 = player.position
+@onready var movement_target_position: Vector3 = PlayerStateAutoload.playerNode.position
 
 enum states{idle, chasing, looking, wandering}
 var state = states.idle
@@ -68,9 +68,9 @@ func _physics_process(delta: float) -> void:
 			direction = (nav_agent.get_next_path_position() - global_position).normalized()
 		#print_debug("wandering")
 		
-	if detection_cone.overlaps_body(player) and hostile:
+	if detection_cone.overlaps_body(PlayerStateAutoload.playerNode) and hostile:
 		LOS_ray.global_rotation = Vector3(0,0,0)
-		LOS_ray.set_target_position((player.global_position + Vector3(0,1,0)) - LOS_ray.global_position)
+		LOS_ray.set_target_position((PlayerStateAutoload.get_player_pos() + Vector3(0,1,0)) - LOS_ray.global_position)
 		LOS_ray.force_raycast_update()
 		if !LOS_ray.is_colliding():
 			state = states.chasing
@@ -88,13 +88,13 @@ func _physics_process(delta: float) -> void:
 	if state == states.chasing:
 		#print_debug("chasing")
 		LOS_ray.global_rotation = Vector3(0,0,0)
-		LOS_ray.set_target_position((player.global_position + Vector3(0,1,0)) - LOS_ray.global_position)
+		LOS_ray.set_target_position((PlayerStateAutoload.get_player_pos() + Vector3(0,1,0)) - LOS_ray.global_position)
 		LOS_ray.force_raycast_update()
 		
 		if !LOS_ray.is_colliding() :
 			#print_debug(LOS_ray.get_collider())
 			
-			nav_agent.target_position = player.position
+			nav_agent.target_position = PlayerStateAutoload.playerNode.position
 			direction = (nav_agent.get_next_path_position() - global_position).normalized()
 			
 			

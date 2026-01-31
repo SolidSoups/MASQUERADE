@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://j1dh1qabywqj"]
 
-[ext_resource type="Script" path="res://character_move.gd" id="1_vcr71"]
-[ext_resource type="Script" path="res://aim_look.gd" id="2_vcr71"]
+[ext_resource type="Script" uid="uid://c30q4ymw57l5m" path="res://Character/character_move.gd" id="1_vcr71"]
+[ext_resource type="Script" uid="uid://ho81alkh6rqh" path="res://Character/aim_look.gd" id="2_vcr71"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m61q5"]
 
