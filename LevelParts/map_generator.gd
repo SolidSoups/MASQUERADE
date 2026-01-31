@@ -79,16 +79,21 @@ func _tag_rooms():
 	cells.shuffle()
 
 	var room_count = ceili(width * height * room_chance)
+	print("Room count is %d" % [room_count])
+	print("Cell size is %d" % [cells.size()])
 	var tagged := 0
 
+	var count := 0
 	for i in cells:
 		if tagged >= room_count:
 			break
-		if tags[i] != Tag.GARDEN:
-			continue
+		count += 1
 		var x = i % width
 		var y = i / width
 		tagged += _flood_tag(x, y, Tag.ROOM, randi_range(2, 5))
+
+	print("Did %d iterations" % [count])
+	print("Tagged %d rooms" % [tagged])
 	
 func _flood_tag(sx: int, sy: int, tag: Tag, count: int) -> int:
 	var stack := [Vector2i(sx, sy)]
@@ -100,7 +105,7 @@ func _flood_tag(sx: int, sy: int, tag: Tag, count: int) -> int:
 		var y = cell.y
 		if not in_bounds(x, y):
 			continue
-		if tags[y * width + x] != Tag.GARDEN:
+		if tags[y * width + x] == tag:
 			continue
 
 		tags[y * width + x] = tag

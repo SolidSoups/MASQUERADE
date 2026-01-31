@@ -91,6 +91,7 @@ func generate_random_level() -> void:
 					gen_world.spawn_room_door(x, y, "z")
 				else:
 					gen_world.spawn_door(x, y, "z")
+					
 	
 	var spawn_x = roundi(w / 2.0)
 	var spawn_y = roundi(h / 2.0)
