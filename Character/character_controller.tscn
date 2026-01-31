@@ -2,8 +2,109 @@
 
 [ext_resource type="Script" uid="uid://c30q4ymw57l5m" path="res://Character/character_move.gd" id="1_vcr71"]
 [ext_resource type="Script" uid="uid://ho81alkh6rqh" path="res://Character/aim_look.gd" id="2_vcr71"]
+[ext_resource type="Texture2D" uid="uid://buihneku7xxk2" path="res://art/mask_1.png" id="3_mwoj4"]
+[ext_resource type="Texture2D" uid="uid://bn8jo7vffqkmp" path="res://art/mask_2.png" id="4_0k4rn"]
+[ext_resource type="Texture2D" uid="uid://dl7wee4hsq2up" path="res://art/mask_3.png" id="5_5xjc5"]
+[ext_resource type="Texture2D" uid="uid://bni05lsm485f" path="res://art/mask_4.png" id="6_d1lsc"]
+[ext_resource type="Texture2D" uid="uid://clspodai23hyu" path="res://art/mask_5.png" id="7_5xjc5"]
+[ext_resource type="Texture2D" uid="uid://xf2lomnw5aj" path="res://art/face_base.png" id="8_nmdu0"]
+[ext_resource type="Texture2D" uid="uid://bccgr3hcwyv4d" path="res://art/face_eyes.png" id="9_vd2yh"]
+[ext_resource type="Texture2D" uid="uid://e1gnam06eduq" path="res://art/face_nose.png" id="10_d3ie8"]
+[ext_resource type="Texture2D" uid="uid://u37om2lubsq7" path="res://art/face_mouth.png" id="11_m4l1o"]
+[ext_resource type="Texture2D" uid="uid://c1p7bc3g04ayr" path="res://art/face_ears.png" id="12_a23hk"]
+[ext_resource type="Script" uid="uid://bhqxhsvj7djd6" path="res://Character/Status.gd" id="13_qp0ij"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m61q5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fyo1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mwoj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0k4rn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5xjc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_d1lsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5xjc5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6vlf6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_nmdu0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n5h7u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vd2yh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80cqu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_d3ie8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ylrrq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_m4l1o")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghh6f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_a23hk")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="CharacterController" type="CharacterBody3D" unique_id=1868302625]
 collision_layer = 4
@@ -28,3 +129,53 @@ character = NodePath("..")
 head = NodePath("../Head")
 camera = NodePath("../Head/CameraContainer/Camera3D")
 mouse_sensitivity = 100
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1039969157]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=212536970]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Mask" type="AnimatedSprite2D" parent="CanvasLayer/Control" unique_id=807388261]
+position = Vector2(108.99999, 496.99997)
+scale = Vector2(0.08487906, 0.08487905)
+sprite_frames = SubResource("SpriteFrames_3fyo1")
+
+[node name="FaceBase" type="AnimatedSprite2D" parent="CanvasLayer/Control" unique_id=1761541826]
+position = Vector2(1052, 507)
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_6vlf6")
+
+[node name="FaceEyes" type="AnimatedSprite2D" parent="CanvasLayer/Control" unique_id=327314714]
+position = Vector2(1052, 507)
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_n5h7u")
+frame = 1
+
+[node name="FaceNose" type="AnimatedSprite2D" parent="CanvasLayer/Control" unique_id=1802235125]
+position = Vector2(1052, 507)
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_80cqu")
+frame = 1
+
+[node name="FaceMouth" type="AnimatedSprite2D" parent="CanvasLayer/Control" unique_id=903787530]
+position = Vector2(1052, 507)
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_ylrrq")
+frame = 1
+
+[node name="FaceEars" type="AnimatedSprite2D" parent="CanvasLayer/Control" unique_id=1489514266]
+position = Vector2(1052, 507)
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_ghh6f")
+frame = 1
+
+[node name="Status" type="Node" parent="." unique_id=1445624]
+script = ExtResource("13_qp0ij")

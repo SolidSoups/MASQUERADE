@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bgkyhcr8vchyo"]
 
 [ext_resource type="Script" uid="uid://c1ivlqvxljs37" path="res://navigationEnemy.gd" id="1_w5ntj"]
+[ext_resource type="Texture2D" uid="uid://b8kx3dal54jm" path="res://art/jimbob.png" id="2_2c0ij"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_w5ntj"]
 
@@ -10,6 +11,21 @@
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w5ntj"]
 points = PackedVector3Array(5, 2.5, 2.5, 5, -0.5, 2.5, 5, 2.5, -2.5, 5, -0.5, -2.5, 0, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_185id"]
+atlas = ExtResource("2_2c0ij")
+region = Rect2(0, 0, 2480, 3508)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1hpgq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_185id")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="NavEnemy" type="Node3D" unique_id=744703773]
 
@@ -24,6 +40,7 @@ navigation_layers = 255
 debug_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyBody3D" unique_id=2001961593]
+visible = false
 mesh = SubResource("CapsuleMesh_w5ntj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyBody3D" unique_id=24302322]
@@ -31,6 +48,7 @@ shape = SubResource("CapsuleShape3D_2c0ij")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="EnemyBody3D" unique_id=1209325795]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, -0.5)
+visible = false
 mesh = SubResource("BoxMesh_2c0ij")
 
 [node name="Detection" type="Area3D" parent="EnemyBody3D" unique_id=1768663511]
@@ -44,3 +62,8 @@ shape = SubResource("ConvexPolygonShape3D_w5ntj")
 [node name="LOSRay" type="RayCast3D" parent="EnemyBody3D/Detection" unique_id=884460458]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 collide_with_areas = true
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="EnemyBody3D" unique_id=647205641]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_1hpgq")

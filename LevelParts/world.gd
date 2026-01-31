@@ -60,4 +60,3 @@ func _ready() -> void:
 	var new_enemy = enemy.instantiate()
 	add_child(new_enemy)
 	new_enemy.global_position = gen_world.get_spawn_pos() + Vector3(2, 0.2, 0)
-

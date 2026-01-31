@@ -103,7 +103,7 @@ func _physics_process(delta: float) -> void:
 		
 	velocity = direction * speed
 	#print_debug(direction)
-	look_at(nav_agent.get_final_position())
+	look_at(nav_agent.get_next_path_position())
 	rotation.x = 0
 	rotation.z = 0
 	# Add the gravity.
