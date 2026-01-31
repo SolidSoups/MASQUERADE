@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	
 	if collision_body.has_overlapping_areas():
 		PlayerStateAutoload.seen = true
-		print_debug("the other seen: ", PlayerStateAutoload.seen)
+		#print_debug("the other seen: ", PlayerStateAutoload.seen)
 	else:
 		PlayerStateAutoload.seen = false
 		

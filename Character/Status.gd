@@ -16,8 +16,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	print_debug("Player is seen: " ,PlayerStateAutoload.seen)
-	if !PlayerStateAutoload.mask_up and PlayerStateAutoload.s:
+	#print_debug("Player is seen: " ,PlayerStateAutoload.seen)
+	if !PlayerStateAutoload.mask_up and PlayerStateAutoload.seen:
 		
 		PlayerStateAutoload.suspicion += delta/10
 	sus_meter.value = PlayerStateAutoload.suspicion

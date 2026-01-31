@@ -105,7 +105,7 @@ func _physics_process(delta: float) -> void:
 			
 		else:
 			state = states.looking
-	print_debug(speed)
+	#print_debug(speed)
 	velocity = direction * speed
 	#print_debug(direction)
 	look_at(nav_agent.get_next_path_position())
