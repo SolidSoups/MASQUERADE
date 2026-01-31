@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1pj5vin0ysra"]
 
-[ext_resource type="PackedScene" uid="uid://cm5awkkrg7qsm" path="res://character_controller.tscn" id="1_ggxrk"]
+[ext_resource type="PackedScene" uid="uid://cm5awkkrg7qsm" path="res://Character/character_controller.tscn" id="1_ggxrk"]
 [ext_resource type="PackedScene" uid="uid://pr6agvxldvb3" path="res://navmeshTest.tscn" id="2_01j4u"]
 [ext_resource type="PackedScene" uid="uid://bgkyhcr8vchyo" path="res://nav_enemy.tscn" id="3_shtnt"]
 
