@@ -1,6 +1,23 @@
 [gd_scene format=3 uid="uid://beo2j2s7gv4r6"]
 
 [ext_resource type="Script" uid="uid://cwbi1g1akaw8t" path="res://LevelParts/world.gd" id="1_nsrvc"]
+[ext_resource type="PackedScene" uid="uid://dis7mixminji7" path="res://LevelParts/level_template.tscn" id="2_6kv5d"]
+[ext_resource type="PackedScene" uid="uid://jg6nrem5u4bp" path="res://LevelParts/wall_node.tscn" id="3_52tcn"]
+
+[sub_resource type="PackedScene" id="PackedScene_q1fy0"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("Wall", "CSGBox3D", "transform", "size"),
+"node_count": 1,
+"node_ids": PackedInt32Array(793492869),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0),
+"variants": [Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0), Vector3(0.5, 2, 15)],
+"version": 3
+}
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q7exi"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -17,6 +34,9 @@ glow_enabled = true
 
 [node name="World" type="Node3D" unique_id=114703339]
 script = ExtResource("1_nsrvc")
+fountain_part = ExtResource("2_6kv5d")
+wall_part = ExtResource("3_52tcn")
+doorwall_part = SubResource("PackedScene_q1fy0")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1216443559]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)

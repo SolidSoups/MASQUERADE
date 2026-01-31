@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dis7mixminji7"]
+
+[ext_resource type="PackedScene" uid="uid://cm5awkkrg7qsm" path="res://Character/character_controller.tscn" id="1_2ngst"]
+
+[node name="test_scene" type="Node3D" unique_id=2133991034]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=590967861]
+use_collision = true
+
+[node name="Floor_CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1115542553]
+size = Vector3(15, 1, 15)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1561125416]
+radius = 2.0
+
+[node name="CharacterController" parent="." unique_id=1868302625 instance=ExtResource("1_2ngst")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.5, 0)
