@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d0o48k3ygc2tt"]
+
+[ext_resource type="Texture2D" uid="uid://okp1raytsmbv" path="res://textures/ugly_ceiling_texture.jpg" id="1_n1etr"]
+
+[resource]
+albedo_texture = ExtResource("1_n1etr")
+uv1_scale = Vector3(4, 4, 1)

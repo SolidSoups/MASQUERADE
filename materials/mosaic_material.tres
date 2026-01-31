@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://hwceq5gt60bu"]
+
+[ext_resource type="Texture2D" uid="uid://c1eqvlhbxp2dl" path="res://textures/mosaic_texture.jpg" id="1_ufcfh"]
+
+[resource]
+albedo_color = Color(0.38170326, 0.38170323, 0.38170323, 1)
+albedo_texture = ExtResource("1_ufcfh")
+metallic = 0.55
+metallic_specular = 0.65
+uv1_scale = Vector3(10, 10, 1)

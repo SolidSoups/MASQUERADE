@@ -24,23 +24,52 @@ func init()->void:
 	tags.fill(0)
 
 #Generate a maze on the set size
-func generate()->void:
-	if width < 0 or height < 0:
+func generate() -> void:
+	if width <= 0 or height <= 0:
 		return
-
-	for y in height:
-		for x in width:
-			var can_x = x < width - 1
-			var can_z = x < height - 1
-			if can_x and can_z:
-				if randi() % 2:
-					wall_x[y * width + x] = false
-				else:
-					wall_z[y * width + x] = true
-			elif can_x:
-				wall_x[y * width + x] = false
-			elif can_z:
-				wall_z[y * width + x] = false
+	
+	var visited := []
+	visited.resize(width * height)
+	visited.fill(false)
+	
+	var stack := [Vector2i(0, 0)]
+	visited[0] = true
+	
+	while stack:
+		var current = stack.back()
+		var x = current.x
+		var y = current.y
+		
+		var neighbors := []
+		if x < width - 1 and not visited[y * width + (x + 1)]:
+			neighbors.append(Vector2i(x + 1, y))
+		if x > 0 and not visited[y * width + (x - 1)]:
+			neighbors.append(Vector2i(x - 1, y))
+		if y < height - 1 and not visited[(y + 1) * width + x]:
+			neighbors.append(Vector2i(x, y + 1))
+		if y > 0 and not visited[(y - 1) * width + x]:
+			neighbors.append(Vector2i(x, y - 1))
+		
+		if neighbors.is_empty():
+			stack.pop_back()
+			continue
+		
+		neighbors.shuffle()
+		var next = neighbors[0]
+		visited[next.y * width + next.x] = true
+		
+		# Remove wall between current and next
+		if next.x > x:
+			wall_x[y * width + x] = false
+		elif next.x < x:
+			wall_x[y * width + (x - 1)] = false
+		elif next.y > y:
+			wall_z[y * width + x] = false
+		elif next.y < y:
+			wall_z[(y - 1) * width + x] = false
+		
+		stack.append(next)
+	
 	_tag_rooms()
 
 func _tag_rooms():

@@ -11,11 +11,13 @@ func generate_random_level(size: int) -> void:
 	randomize()
 	gen_map.init()
 	gen_map.generate()
-	for x in range(size):
-		for y in range(size):
+	for x in range(gen_map.width):
+		for y in range(gen_map.height):
 			# generate a floor at the position
-			if gen_world:
-				gen_world.spawn_floor(x, y)
+			gen_world.spawn_floor(x, y)
+			var is_this_room: bool = gen_map.is_room(x, y)
+			if is_this_room:
+				gen_world.spawn_room_ceiling(x, y)
 
 			# always spawn walls enclosing the area
 			if x==0:
@@ -26,24 +28,16 @@ func generate_random_level(size: int) -> void:
 				gen_world.spawn_wall(x, y-1, "z")
 			elif y==size-1:
 				gen_world.spawn_wall(x, y, "z")
-
-			# Do binary tree maze generation
-			var can_south = x < size-1
-			var can_west = y < size-1
-
-			if can_south and can_west:
-				if randi() % 2:
-					gen_world.spawn_door(x, y, "x")
-					gen_world.spawn_wall(x, y, "z")
-				else:
-					gen_world.spawn_door(x, y, "z")
-					gen_world.spawn_wall(x, y, "x")
-			elif can_south:
-				gen_world.spawn_door(x, y, "x")
-				gen_world.spawn_wall(x, y, "z")
-			elif can_west:
-				gen_world.spawn_door(x, y, "z")
+			
+			if gen_map.has_wall_x(x, y):
 				gen_world.spawn_wall(x, y, "x")
+			else:
+				gen_world.spawn_door(x, y, "x")
+			if gen_map.has_wall_z(x, y):
+				gen_world.spawn_wall(x, y, "z")
+			else:
+				gen_world.spawn_door(x, y, "z")
+
 
 	# finally set the spawn floor so we can get it in script
 	var spawn_adjusted = roundi(size / 2.0)
