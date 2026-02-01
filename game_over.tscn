@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://djqg0rofnkm2i"]
+
+[ext_resource type="Script" uid="uid://cxtd7ukj7apoa" path="res://game_over_screen.gd" id="1_ccer4"]
+[ext_resource type="Texture2D" uid="uid://c8hiyp61qkm2y" path="res://art/game_over.png" id="2_8u835"]
+[ext_resource type="FontFile" uid="uid://c2d1mlybptsnk" path="res://fonts/LT Diploma.otf" id="3_ftari"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ccer4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8u835"]
+bg_color = Color(0, 0, 0, 0.70980394)
+
+[node name="GameOver" type="Node2D" unique_id=2054542718]
+
+[node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=1779479227]
+process_mode = 3
+script = ExtResource("1_ccer4")
+
+[node name="Control" type="Control" parent="GameOverScreen" unique_id=1043320678]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="GameOverScreen/Control" unique_id=195190761]
+position = Vector2(576, 324)
+scale = Vector2(0.18888888, 0.18888888)
+texture = ExtResource("2_8u835")
+
+[node name="Button" type="Button" parent="GameOverScreen/Control" unique_id=894227692]
+process_mode = 3
+layout_mode = 0
+offset_left = 776.0
+offset_top = 192.0
+offset_right = 1224.0
+offset_bottom = 480.0
+theme_override_colors/font_color = Color(0.7764706, 0.46666667, 0.2509804, 1)
+theme_override_colors/font_outline_color = Color(0.6431373, 0.2509804, 0.14901961, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 0)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_ftari")
+theme_override_font_sizes/font_size = 79
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ccer4")
+text = "RETRY?"
+
+[node name="Label" type="RichTextLabel" parent="GameOverScreen" unique_id=1949979752]
+z_index = 2
+offset_left = 112.0
+offset_top = 488.0
+offset_right = 1040.0
+offset_bottom = 689.0
+theme_override_colors/default_color = Color(0.7764706, 0.46666667, 0.2509804, 1)
+theme_override_colors/font_outline_color = Color(0.6431373, 0.2509804, 0.14901961, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("3_ftari")
+theme_override_font_sizes/normal_font_size = 38
+theme_override_styles/normal = SubResource("StyleBoxFlat_8u835")
+text = "I knew I'd smelled you before! We shall have to find some new project to do with the rest of you. Waste not, want not."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="GameOverScreen/Control/Button" to="GameOverScreen" method="_on_button_pressed"]

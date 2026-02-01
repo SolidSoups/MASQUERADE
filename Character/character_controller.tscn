@@ -336,6 +336,7 @@ autowrap_mode = 3
 
 [node name="WalkSound" type="AudioStreamPlayer3D" parent="." unique_id=21085658]
 stream = SubResource("AudioStreamPlaylist_6vlf6")
+volume_db = -20.0
 
 [connection signal="pressed" from="DialogueMenu/BoxContainer/Button1" to="DialogueMenu" method="_on_button_pressed"]
 [connection signal="pressed" from="DialogueMenu/BoxContainer/Button2" to="DialogueMenu" method="_on_button_2_pressed"]

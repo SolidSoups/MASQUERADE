@@ -88,6 +88,8 @@ func _process(delta: float) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		visible = true
 		get_tree().paused = true
+		if PlayerStateAutoload.game_over:
+			get_tree().change_scene_to_file("res://game_over.tscn")
 
 func get_normal_dialogue():
 	if PlayerStateAutoload.suspicion < PlayerStateAutoload.suspicion_max/2:

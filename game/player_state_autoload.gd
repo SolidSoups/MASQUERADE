@@ -22,13 +22,15 @@ var suspicion_level = sus_levels.none
 
 func _process(delta: float) -> void:
 	
-	clampf(suspicion,0.0,suspicion_max)
+	
+		#get_tree().unload_current_scene()
 	suspicion_level = int(suspicion)
+	clampf(suspicion,0.0,suspicion_max)
 
 func open_dialogue(preset: int) :
 	if dialogue_cooldown <= 0.0:
 		dialogue_cooldown = dialogue_cooldown_max
-		if suspicion == suspicion_max:
+		if suspicion >= suspicion_max:
 			game_over = true
 		dialogue = true
 		dialogue_preset = preset
