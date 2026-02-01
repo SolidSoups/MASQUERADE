@@ -107,7 +107,7 @@ func _ready() -> void:
 	var newPlayer = character_controller.instantiate()
 	add_child(newPlayer)
 	newPlayer.global_position = gen_world.get_spawn_pos() + Vector3(0, 0.2,0)
-	PlayerStateAutoload.debug_mask_disabled = true
+	# PlayerStateAutoload.debug_mask_disabled = true
 
 	# Spawn enemies
 	# enemy_spawner.spawn_all_enemies(gen_map, gen_world)
