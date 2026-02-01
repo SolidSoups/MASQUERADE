@@ -6,8 +6,14 @@ const JUMP_VELOCITY = 4.5
 @onready var collision_body = $Area3D
 @onready var walk_sound = $WalkSound
 
+var is_mask_disabled: bool = false
+
 func _ready()->void:
 	PlayerStateAutoload.playerNode = self
+
+#Debug method
+func set_is_mask_disabled(is_active: bool) -> void:
+	PlayerStateAutoload.debug_mask_disabled = is_active
 
 
 func _physics_process(delta: float) -> void:

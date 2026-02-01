@@ -72,6 +72,15 @@ func generate() -> void:
 			wall_z[(y - 1) * width + x] = false
 		
 		stack.append(next)
+
+	# randomize some of the maze
+	const random_mouse_holes: int = 15
+	for i in range(random_mouse_holes):
+		var random_index: int = randi_range(0, width * height - 1)
+		if randi() % 2:
+			wall_x[random_index] = false
+		else:
+			wall_z[random_index] = false
 	
 	_tag_rooms()
 
