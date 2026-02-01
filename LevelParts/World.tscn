@@ -51,7 +51,6 @@ script = ExtResource("6_kvb8d")
 [node name="enemy_spawner" type="Node3D" parent="." unique_id=1579293603]
 script = ExtResource("7_jgerg")
 enemy_scene = ExtResource("3_52tcn")
-passive_groups = 8
+passive_groups = 5
 group_size_min = 1
-group_size_max = 1
-room_radius = 4.0
+group_size_max = 2

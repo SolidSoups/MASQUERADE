@@ -110,7 +110,7 @@ func _ready() -> void:
 	# PlayerStateAutoload.debug_mask_disabled = true
 
 	# Spawn enemies
-	# enemy_spawner.spawn_all_enemies(gen_map, gen_world)
+	enemy_spawner.spawn_all_enemies(gen_map, gen_world)
 	# var spawn_positions: Array[Vector2i] = [
 	# 	Vector2i( 2, 2), 
 	# 	Vector2i( gen_map.width -2, gen_map.height - 2)
@@ -122,3 +122,8 @@ func _ready() -> void:
 	# var new_enemy = enemy.instantiate()
 	# add_child(new_enemy)
 	# new_enemy.global_position = gen_world.get_spawn_pos() + Vector3(2, 0.2, 0)
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_pressed() and not event.is_echo() and event.keycode == KEY_F:
+		PlayerStateAutoload.debug_mask_disabled = !PlayerStateAutoload.debug_mask_disabled

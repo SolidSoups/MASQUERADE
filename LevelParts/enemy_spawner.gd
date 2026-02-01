@@ -18,6 +18,13 @@ func spawn_passive(spawn_pos: Vector3)->void:
 
 	var new_enemy = enemy_scene.instantiate()
 	add_child(new_enemy)
+	var new_enemy_node = new_enemy.find_child("EnemyBody3D")
+	new_enemy_node.set_ai_id(
+		randi_range(1, 2),
+		1.0,
+		false,
+		true if randi() % 2 == 0 else false
+	)
 	new_enemy.global_position = spawn_pos + Vector3(final_x, 0.2, final_y)
 
 func spawn_chaser(spawn_pos: Vector3)->void:
