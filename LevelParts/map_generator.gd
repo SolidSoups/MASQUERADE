@@ -14,6 +14,9 @@ var tags: Array[int] = []
 func in_bounds(x: int, y: int)->bool:
 	return y * width + x < width * height
 
+func size()->int:
+	return width * height
+
 #Set size of the maze
 func init()->void:
 	wall_x.resize(width * height)
