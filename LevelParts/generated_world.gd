@@ -74,4 +74,9 @@ func get_spawn_pos()->Vector3:
 		return Vector3.ZERO
 	return floor_gridMap.map_to_local(floors[randi() % floors.size()])
 
+func get_cell_pos(x: int, y: int)->Vector3:
+	return floor_gridMap.map_to_local(Vector3i(x, 0, y))
+
+func get_cell_pos_global(x: int, y: int) -> Vector3:
+	return floor_gridMap.to_global(floor_gridMap.map_to_local(Vector3(x, 0, y)))
 
