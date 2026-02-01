@@ -19,11 +19,10 @@ enum sus_levels{none, low, medium, high, exposed}
 var suspicion = 0.0
 var suspicion_max = 5.0
 var suspicion_level = sus_levels.none
+var has_won: bool = false
 
 func _process(delta: float) -> void:
-	
-	
-		#get_tree().unload_current_scene()
+	clampf(suspicion,0.0,suspicion_max)
 	suspicion_level = int(suspicion)
 	clampf(suspicion,0.0,suspicion_max)
 

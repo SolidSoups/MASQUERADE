@@ -10,6 +10,7 @@ var is_mask_disabled: bool = false
 
 func _ready()->void:
 	PlayerStateAutoload.playerNode = self
+	add_to_group("player")
 
 #Debug method
 func set_is_mask_disabled(is_active: bool) -> void:
