@@ -17,6 +17,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if PlayerStateAutoload.mask_up:
+		return
+
 	if overlaps_body(PlayerStateAutoload.playerNode):
 		if !grabbed:
 			grab_sound.play()
