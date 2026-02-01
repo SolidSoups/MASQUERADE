@@ -11,6 +11,7 @@ var dialogue_cooldown_max = 5.0
 enum dialogue_presets{jimobob,guy,lady}
 var dialogue_preset = dialogue_presets.guy
 var mask_up = true
+var debug_mask_disabled = false
 var seen = false
 
 enum sus_levels{none, low, medium, high, exposed}

@@ -3,6 +3,7 @@ extends Node3D
 @export_group("Nodes")
 @export var gen_world: Node
 @export var gen_map: Node
+@export var enemy_spawner: Node
 @export var character_controller: PackedScene
 @export var enemy: PackedScene
 
@@ -106,6 +107,16 @@ func _ready() -> void:
 	var newPlayer = character_controller.instantiate()
 	add_child(newPlayer)
 	newPlayer.global_position = gen_world.get_spawn_pos() + Vector3(0, 0.2,0)
+	PlayerStateAutoload.debug_mask_disabled = true
+
+	# Spawn enemies
+	# enemy_spawner.spawn_all_enemies(gen_map, gen_world)
+	# var spawn_positions: Array[Vector2i] = [
+	# 	Vector2i( 2, 2), 
+	# 	Vector2i( gen_map.width -2, gen_map.height - 2)
+	# ]
+	# enemy_spawner.spawn_chasers(gen_map, gen_world, spawn_positions)
+
 
 	#Spawn test enemy
 	# var new_enemy = enemy.instantiate()
