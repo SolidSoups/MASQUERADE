@@ -7,6 +7,22 @@ extends CharacterBody3D
 @onready var sprite = $AnimatedSprite3D
 @onready var walk_sound = $WalkSound
 @onready var murmur_sound = $MurmurSound
+@onready var overheard_text = $Overheard
+
+#background chatter
+var overheard_1 = "- One of my humans escaped the other day. - Oh? I hear if you take one of their toes, they're less likely to do that."
+var overheard_2 = "- Had a dream the other day. That there was some ravenous monster among us, here at the ball. Crazy, right?"
+var overheard_3 = "- Did you see the eyes over on the figure? Such an unnatural shade. Like a dirty puddle. "
+var overheard_4 = "- How would such a creature smile with such thick lips?"
+var overheard_5 = "- Such daring artistry, working with such a bestial subject. Mark my words, he's going to be famous or dead within the lunar cycle."
+var overheard_6 = "- It's a perspective thing. The nose being large doesn't mean it smells well. Or good. Hah."
+var overheard_7 = "- Do you ever think of visiting the humans in their natural habitat? "
+var overheard_8 = "- Lord James Robert is such a kidder. Said I looked delicious and licked his lips. I swear he was salivating."
+var overheard_9 = "- Do you think the art project was ethically sourced? - Hah! Like some human is walking around with half a face?"
+var overheard_10 = "- Do you think humans will ever be civilized? I think it's in their nature to be savage. "
+var overheard_11 = "- I hear the main difference between humans is what kind of hat their religion requires. Isn't that fascinating?"
+
+var overheard_list = [overheard_1, overheard_2, overheard_3, overheard_4, overheard_5, overheard_6, overheard_7, overheard_8, overheard_9, overheard_10, overheard_11, ]
 
 @export var player: CharacterBody3D
 enum enemy_presets{jimbob, guy,lady}
@@ -56,11 +72,16 @@ func _physics_process(delta: float) -> void:
 				state = states.chasing
 		
 	if state == states.idle and is_on_floor():
-		#print_debug("wait",time_to_wait)
+		overheard_list.shuffle()
+		if overheard_text.text == "" and preset != enemy_presets.jimbob :
+			overheard_text.text = overheard_list[1]
+		
 		time_to_wait = time_to_wait - delta
 		
 		if time_to_wait <= 0.0:
-
+			
+			overheard_text.text = ""
+			
 			wander = randi_range(0, 1)
 			#print_debug(wander)
 			if wander == 1:
@@ -69,7 +90,7 @@ func _physics_process(delta: float) -> void:
 			elif wander == 0:
 				pass
 				
-			time_to_wait = randf_range(5.0, 10.0)
+			time_to_wait = randf_range(10.0, 15.0)
 		#print_debug(state)
 		
 	if state == states.wandering:
@@ -90,6 +111,7 @@ func _physics_process(delta: float) -> void:
 		#print_debug("wandering")
 		
 	if state == states.looking:
+		overheard_text.text = ""
 		#nav_agent.target_position = nav_agent.get_final_position()
 		#print_debug(nav_agent.distance_to_target())
 		#print_debug(nav_agent.is_navigation_finished())
@@ -100,6 +122,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			direction = (nav_agent.get_next_path_position() - global_position).normalized()
 	if state == states.chasing:
+		overheard_text.text = ""
 		#print_debug("chasing")
 		LOS_ray.global_rotation = Vector3(0,0,0)
 		LOS_ray.set_target_position((PlayerStateAutoload.get_player_pos() + Vector3(0,1,0)) - LOS_ray.global_position)

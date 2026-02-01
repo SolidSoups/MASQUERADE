@@ -6,6 +6,7 @@ var nose = false
 var mouth = false
 var ears = false
 var dialogue = false
+var game_over = false
 var dialogue_cooldown = 0.0
 var dialogue_cooldown_max = 5.0
 enum dialogue_presets{jimobob,guy,lady}
@@ -26,6 +27,8 @@ func _process(delta: float) -> void:
 func open_dialogue(preset: int) :
 	if dialogue_cooldown <= 0.0:
 		dialogue_cooldown = dialogue_cooldown_max
+		if suspicion == suspicion_max:
+			game_over = true
 		dialogue = true
 		dialogue_preset = preset
 

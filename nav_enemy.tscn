@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://beyq22ua5hqw3" path="res://sound/Laughing 1.mp3" id="13_d8l06"]
 [ext_resource type="AudioStream" uid="uid://ce87a05evpoh2" path="res://sound/Laughing 2.mp3" id="14_axilb"]
 [ext_resource type="AudioStream" uid="uid://cgqjsa7r0yl0f" path="res://sound/Laughing 3.mp3" id="15_lo0vk"]
+[ext_resource type="FontFile" uid="uid://c2d1mlybptsnk" path="res://fonts/LT Diploma.otf" id="16_tfxac"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_w5ntj"]
 
@@ -130,3 +131,14 @@ max_db = 4.0
 
 [node name="MurmurSound" type="AudioStreamPlayer3D" parent="EnemyBody3D" unique_id=1076384200]
 stream = SubResource("AudioStreamRandomizer_uopvh")
+
+[node name="Overheard" type="Label3D" parent="EnemyBody3D" unique_id=1344716788]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+billboard = 2
+modulate = Color(0.7764706, 0.46666667, 0.2509804, 1)
+outline_modulate = Color(0.6431373, 0.2509804, 0.14901961, 1)
+font = ExtResource("16_tfxac")
+font_size = 27
+outline_size = 7
+autowrap_mode = 3
+width = 400.0

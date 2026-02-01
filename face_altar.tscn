@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://db8mya2qp6jdm" path="res://art/altar_nose.png" id="3_oj0b2"]
 [ext_resource type="Texture2D" uid="uid://b67mq60kcrpon" path="res://art/altar_mouth.png" id="4_ew57r"]
 [ext_resource type="AudioStream" uid="uid://ejvia2fgs511" path="res://sound/Creepy ambience.mp3" id="6_oj0b2"]
+[ext_resource type="AudioStream" uid="uid://gyp218707na3" path="res://sound/Grabbing.mp3" id="7_ew57r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aeleh"]
 
@@ -53,3 +54,6 @@ sprite_frames = SubResource("SpriteFrames_fle7e")
 stream = SubResource("AudioStreamPlaylist_ew57r")
 unit_size = 20.0
 autoplay = true
+
+[node name="GrabSound" type="AudioStreamPlayer3D" parent="AltarHitBox" unique_id=1144941696]
+stream = ExtResource("7_ew57r")
