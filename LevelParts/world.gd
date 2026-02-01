@@ -8,6 +8,8 @@ extends Node3D
 @export var enemy: PackedScene
 @export var altar: PackedScene
 
+var player: CharacterBody3D
+
 # Generates a random level with the size determining the rows and columns size (identical)
 func generate_random_level() -> void:
 	randomize()
@@ -105,24 +107,19 @@ func _ready() -> void:
 	gen_world.bake_navigation_async()
 
 	#Spawn player
-	var newPlayer = character_controller.instantiate()
-	add_child(newPlayer)
-	newPlayer.global_position = gen_world.get_spawn_pos() + Vector3(0, 0.2,0)
-	# PlayerStateAutoload.debug_mask_disabled = true
+	player = character_controller.instantiate()
+	add_child(player)
+	player.global_position = gen_world.get_spawn_pos() + Vector3(0, 0.2,0)
 
 	# Spawn enemies
 	enemy_spawner.spawn_all_enemies(gen_map, gen_world)
 
-	# var spawn_positions: Array[Vector2i] = [
-	# 	Vector2i( 2, 2), 
-	# 	Vector2i( gen_map.width -2, gen_map.height - 2)
-	# ]
-	# enemy_spawner.spawn_chasers(gen_map, gen_world, spawn_positions)
 
 	#Spawn altars
 	var room_groups: Array[Array] = gen_map.get_room_groups()
 	var altars_to_spawn: Array[String] = ["eyes", "nose", "ears", "mouth"]
 	altars_to_spawn.shuffle()
+	var altar_positions: Array[Vector2i] = []
 	for group in room_groups:
 		if altars_to_spawn.size() == 0:
 			break
@@ -134,7 +131,11 @@ func _ready() -> void:
 		
 		#Get real position
 		var spawn_pos = gen_world.get_cell_pos_global(room.x, room.y)
+		altar_positions.push_back(Vector2i(room.x, room.y))
 		spawn_altar(spawn_pos, altars_to_spawn.pop_back())
+
+	# spawn chasers near altars
+	enemy_spawner.spawn_chasers(gen_map, gen_world, altar_positions)
 		
 func spawn_altar(spawn_pos: Vector3, altar_type: String)->void:
 	var new_node = altar.instantiate()
@@ -155,3 +156,38 @@ func spawn_altar(spawn_pos: Vector3, altar_type: String)->void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and not event.is_echo() and event.keycode == KEY_F:
 		PlayerStateAutoload.debug_mask_disabled = !PlayerStateAutoload.debug_mask_disabled
+
+var jimbomb_spawned: bool = false
+func _process(delta: float) -> void:
+	if jimbomb_spawned:
+		return
+
+	var mask_count := 0
+	if PlayerStateAutoload.eyes:
+		mask_count += 1
+	if PlayerStateAutoload.nose:
+		mask_count += 1
+	if PlayerStateAutoload.mouth:
+		mask_count += 1
+	if PlayerStateAutoload.ears:
+		mask_count += 1
+
+	if mask_count >= 2:
+		spawn_jimbob()
+		jimbomb_spawned = true
+
+func spawn_jimbob() -> void:
+	#Get player position
+	var player_ipos: Vector2i = gen_world.world_to_grid(player.global_position)
+
+	#Randomize spawn cell position
+	var rx: int = randi_range(-3, 3)
+	var ry: int = randi_range(-3, 3)
+	
+	#Convert to world position (clamped too)
+	var spawn_cell_coord = player_ipos + Vector2i(rx, ry)
+	spawn_cell_coord.x = clamp(spawn_cell_coord.x, 1, gen_map.width-2)
+	spawn_cell_coord.y = clamp(spawn_cell_coord.y, 1, gen_map.height-2)
+	var spawn_cell_world: Vector3 = gen_world.get_cell_pos_global(spawn_cell_coord.x, spawn_cell_coord.y)
+	enemy_spawner.spawn_boss(spawn_cell_world)
+	

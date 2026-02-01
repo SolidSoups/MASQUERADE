@@ -33,11 +33,28 @@ func spawn_chaser(spawn_pos: Vector3)->void:
 
 	var new_enemy = enemy_scene.instantiate()
 	add_child(new_enemy)
+	var new_enemy_node = new_enemy.find_child("EnemyBody3D")
+	new_enemy_node.set_ai_id(
+		randi_range(1, 2),
+		2.0,
+		true,
+		true if randi() % 2 == 0 else false
+	)
 	new_enemy.global_position = spawn_pos + Vector3(final_x, 0.2, final_y)
 	print("Spawned chaser at ", spawn_pos)
 
-func spawn_boss(pos: Vector3)->void:
-	print("Spawned boss at %s" % [pos])
+func spawn_boss(spawn_pos: Vector3)->void:
+	var new_enemy = enemy_scene.instantiate()
+	add_child(new_enemy)
+	var new_enemy_node = new_enemy.find_child("EnemyBody3D")
+	new_enemy_node.set_ai_id(
+		0,
+		3.0,
+		true,
+		true
+	)
+	new_enemy.global_position = spawn_pos + Vector3(0, 0.2, 0)
+	print("Spawned JimBob")
 
 func spawn_all_enemies(gen_map: Node, gen_world: Node)->void:
 	var w: int = gen_map.width
