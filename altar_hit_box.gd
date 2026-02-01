@@ -5,6 +5,11 @@ extends Area3D
 enum face_parts {eyes, ears, nose, mouth}
 @export var face_part = face_parts.eyes
 var grabbed = false
+
+func set_face_part(face_index: int)->void:
+	face_part = face_index as face_parts
+	sprite.frame = face_part
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	sprite.frame = face_part

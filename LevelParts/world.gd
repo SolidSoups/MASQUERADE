@@ -6,6 +6,7 @@ extends Node3D
 @export var enemy_spawner: Node
 @export var character_controller: PackedScene
 @export var enemy: PackedScene
+@export var altar: PackedScene
 
 # Generates a random level with the size determining the rows and columns size (identical)
 func generate_random_level() -> void:
@@ -111,17 +112,44 @@ func _ready() -> void:
 
 	# Spawn enemies
 	enemy_spawner.spawn_all_enemies(gen_map, gen_world)
+
 	# var spawn_positions: Array[Vector2i] = [
 	# 	Vector2i( 2, 2), 
 	# 	Vector2i( gen_map.width -2, gen_map.height - 2)
 	# ]
 	# enemy_spawner.spawn_chasers(gen_map, gen_world, spawn_positions)
 
-
-	#Spawn test enemy
-	# var new_enemy = enemy.instantiate()
-	# add_child(new_enemy)
-	# new_enemy.global_position = gen_world.get_spawn_pos() + Vector3(2, 0.2, 0)
+	#Spawn altars
+	var room_groups: Array[Array] = gen_map.get_room_groups()
+	var altars_to_spawn: Array[String] = ["eyes", "nose", "ears", "mouth"]
+	altars_to_spawn.shuffle()
+	for group in room_groups:
+		if altars_to_spawn.size() == 0:
+			break
+		if group.size() == 0:
+			continue
+		#Pick random room in group
+		var ri: int = randi_range(0, group.size()-1)
+		var room: Vector2i = group[ri]
+		
+		#Get real position
+		var spawn_pos = gen_world.get_cell_pos_global(room.x, room.y)
+		spawn_altar(spawn_pos, altars_to_spawn.pop_back())
+		
+func spawn_altar(spawn_pos: Vector3, altar_type: String)->void:
+	var new_node = altar.instantiate()
+	add_child(new_node)
+	var script_node = new_node.get_node("AltarHitBox")
+	new_node.global_position = spawn_pos
+	if altar_type == "eyes":
+		script_node.set_face_part(0)
+	elif altar_type == "ears":
+		script_node.set_face_part(1)
+	elif altar_type == "nose":
+		script_node.set_face_part(2)
+	elif altar_type == "mouth":
+		script_node.set_face_part(3)
+	print("Spawned altar: ", altar_type, " at ", spawn_pos)
 
 
 func _input(event: InputEvent) -> void:
