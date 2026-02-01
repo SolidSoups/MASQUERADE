@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://6ht8ar7iihhj" path="res://art/guy.png" id="17_80cqu"]
 [ext_resource type="AudioStream" uid="uid://ccw0aivd8uq8u" path="res://sound/Footstep player alternative.mp3" id="17_qp0ij"]
 [ext_resource type="Texture2D" uid="uid://bt27fs3iatxsp" path="res://art/lady.png" id="18_ylrrq"]
+[ext_resource type="AudioStream" uid="uid://vxukcb88mqhi" path="res://music/Weird exploring(1).wav" id="21_80cqu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m61q5"]
 
@@ -339,6 +340,11 @@ autowrap_mode = 3
 [node name="WalkSound" type="AudioStreamPlayer3D" parent="." unique_id=21085658]
 stream = SubResource("AudioStreamPlaylist_6vlf6")
 volume_db = -20.0
+
+[node name="Music" type="AudioStreamPlayer3D" parent="." unique_id=1349149576]
+stream = ExtResource("21_80cqu")
+volume_db = 3.0
+autoplay = true
 
 [connection signal="pressed" from="DialogueMenu/BoxContainer/Button1" to="DialogueMenu" method="_on_button_pressed"]
 [connection signal="pressed" from="DialogueMenu/BoxContainer/Button2" to="DialogueMenu" method="_on_button_2_pressed"]

@@ -26,6 +26,28 @@ func _process(delta: float) -> void:
 	suspicion_level = int(suspicion)
 	clampf(suspicion,0.0,suspicion_max)
 
+func reset():
+	playerNode = null
+	eyes = false
+	nose = false
+	mouth = false
+	ears = false
+	dialogue = false
+	game_over = false
+	dialogue_cooldown = 0.0
+	dialogue_cooldown_max = 5.0
+
+	dialogue_preset = dialogue_presets.guy
+	mask_up = true
+	debug_mask_disabled = false
+	seen = false
+
+
+	suspicion = 0.0
+	suspicion_max = 5.0
+	suspicion_level = sus_levels.none
+	has_won = false
+
 func open_dialogue(preset: int) :
 	if dialogue_cooldown <= 0.0:
 		dialogue_cooldown = dialogue_cooldown_max
