@@ -32,6 +32,12 @@ enum enemy_presets{jimbob, guy,lady}
 @export var wanderer = true
 @onready var movement_target_position: Vector3 = PlayerStateAutoload.playerNode.position
 
+func set_ai_id(_preset: int, _speed: float, _hostile: bool, _wanderer: bool) -> void:
+	preset = _preset as enemy_presets
+	speed = _speed
+	hostile = _hostile
+	wanderer = _wanderer
+
 enum states{idle, chasing, looking, wandering}
 var state = states.idle
 var time_to_wait = randf_range(5.0, 10.0)

@@ -5,6 +5,11 @@ extends Area3D
 enum face_parts {eyes, ears, nose, mouth}
 @export var face_part = face_parts.eyes
 var grabbed = false
+
+func set_face_part(face_index: int)->void:
+	face_part = face_index as face_parts
+	sprite.frame = face_part
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	sprite.frame = face_part
@@ -12,6 +17,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if PlayerStateAutoload.mask_up:
+		return
+
 	if overlaps_body(PlayerStateAutoload.playerNode):
 		if !grabbed:
 			grab_sound.play()

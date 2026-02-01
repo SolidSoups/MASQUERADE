@@ -10,6 +10,10 @@ enum Tag { DEFAULT, GARDEN, ROOM }
 var wall_x: Array[bool] = []
 var wall_z: Array[bool] = []
 var tags: Array[int] = []
+var room_groups: Array[Array] = []
+
+func get_room_groups() -> Array[Array]:
+	return room_groups
 
 func in_bounds(x: int, y: int)->bool:
 	return y * width + x < width * height
@@ -104,12 +108,14 @@ func _tag_rooms():
 		var y = i / width
 		tagged += _flood_tag(x, y, Tag.ROOM, randi_range(2, 5))
 
+	print("Created %d room groups" % [room_groups.size()])
 	print("Did %d iterations" % [count])
 	print("Tagged %d rooms" % [tagged])
 	
 func _flood_tag(sx: int, sy: int, tag: Tag, count: int) -> int:
 	var stack := [Vector2i(sx, sy)]
 	var filled := 0
+	var group: Array[Vector2i] = []
 
 	while stack and filled < count:
 		var cell = stack.pop_back()
@@ -122,6 +128,7 @@ func _flood_tag(sx: int, sy: int, tag: Tag, count: int) -> int:
 
 		tags[y * width + x] = tag
 		filled += 1
+		group.push_back(Vector2i(x, y))
 
 		var neighbours: Array[Vector2i] = []
 		if x < width - 1 and not wall_x[y * width + x]:
@@ -135,6 +142,8 @@ func _flood_tag(sx: int, sy: int, tag: Tag, count: int) -> int:
 
 		neighbours.shuffle()
 		stack.append_array(neighbours)
+
+	room_groups.push_back(group)
 	
 	return filled
 

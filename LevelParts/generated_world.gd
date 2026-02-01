@@ -80,3 +80,7 @@ func get_cell_pos(x: int, y: int)->Vector3:
 func get_cell_pos_global(x: int, y: int) -> Vector3:
 	return floor_gridMap.to_global(floor_gridMap.map_to_local(Vector3(x, 0, y)))
 
+func world_to_grid(pos: Vector3) -> Vector2i:
+	var local = floor_gridMap.to_local(pos)
+	var cell = floor_gridMap.local_to_map(local)
+	return Vector2i(cell.x, cell.z)
