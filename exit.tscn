@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dtl3fpxlvj1ph"]
+
+[ext_resource type="Material" uid="uid://dey3446k77hdh" path="res://materials/exit_mat.tres" id="1_6sfst"]
+[ext_resource type="Script" uid="uid://e4m670adjvil" path="res://collide_exit.gd" id="1_24kvk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_24kvk"]
+size = Vector3(2.6032715, 11.945068, 2.4736328)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mlcv5"]
+size = Vector3(1, 10, 1)
+
+[node name="Exit" type="Node3D" unique_id=1881390555]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1689333651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+script = ExtResource("1_24kvk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1702522401]
+shape = SubResource("BoxShape3D_24kvk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1531513903]
+material_override = ExtResource("1_6sfst")
+mesh = SubResource("BoxMesh_mlcv5")

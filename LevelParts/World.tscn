@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c5wsai1va76et" path="res://LevelParts/generated_world.gd" id="4_52tcn"]
 [ext_resource type="PackedScene" path="res://face_altar.tscn" id="4_84mqp"]
 [ext_resource type="MeshLibrary" uid="uid://dspdx5jgj1dxh" path="res://LevelParts/level_mesh_library.meshlib" id="5_52tcn"]
+[ext_resource type="PackedScene" uid="uid://dtl3fpxlvj1ph" path="res://exit.tscn" id="5_ipptg"]
 [ext_resource type="Script" uid="uid://dmtaa6xcu1m6v" path="res://LevelParts/map_generator.gd" id="6_kvb8d"]
 [ext_resource type="Script" uid="uid://bjiqf66xbjiuq" path="res://LevelParts/enemy_spawner.gd" id="7_jgerg"]
 
@@ -19,6 +20,7 @@ enemy_spawner = NodePath("enemy_spawner")
 character_controller = ExtResource("4_6kv5d")
 enemy = ExtResource("3_52tcn")
 altar = ExtResource("4_84mqp")
+win_area = ExtResource("5_ipptg")
 
 [node name="WorldNavMesh" type="NavigationRegion3D" parent="." unique_id=2073110823]
 navigation_mesh = SubResource("NavigationMesh_6kv5d")

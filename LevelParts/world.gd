@@ -7,8 +7,10 @@ extends Node3D
 @export var character_controller: PackedScene
 @export var enemy: PackedScene
 @export var altar: PackedScene
+@export var win_area: PackedScene
 
 var player: CharacterBody3D
+var spawn_pos: Vector2i
 
 # Generates a random level with the size determining the rows and columns size (identical)
 func generate_random_level() -> void:
@@ -99,6 +101,7 @@ func generate_random_level() -> void:
 	
 	var spawn_x = roundi(w / 2.0)
 	var spawn_y = roundi(h / 2.0)
+	spawn_pos = Vector2i(spawn_x, spawn_y)
 	gen_world.spawn_spawn_floor(spawn_x, spawn_y)
 
 func _ready() -> void:
@@ -111,9 +114,9 @@ func _ready() -> void:
 	add_child(player)
 	player.global_position = gen_world.get_spawn_pos() + Vector3(0, 0.2,0)
 
+
 	# Spawn enemies
 	enemy_spawner.spawn_all_enemies(gen_map, gen_world)
-
 
 	#Spawn altars
 	var room_groups: Array[Array] = gen_map.get_room_groups()
@@ -158,10 +161,9 @@ func _input(event: InputEvent) -> void:
 		PlayerStateAutoload.debug_mask_disabled = !PlayerStateAutoload.debug_mask_disabled
 
 var jimbomb_spawned: bool = false
-func _process(delta: float) -> void:
-	if jimbomb_spawned:
-		return
+var exit_spawned: bool = false
 
+func _process(delta: float) -> void:
 	var mask_count := 0
 	if PlayerStateAutoload.eyes:
 		mask_count += 1
@@ -172,9 +174,20 @@ func _process(delta: float) -> void:
 	if PlayerStateAutoload.ears:
 		mask_count += 1
 
-	if mask_count >= 2:
+	if mask_count >= 2 and !jimbomb_spawned:
 		spawn_jimbob()
 		jimbomb_spawned = true
+	
+	if mask_count >= 4 and !exit_spawned:
+		spawn_exit()
+		exit_spawned = true
+
+func spawn_exit() -> void:
+	#Spawn win area
+	var newWin = win_area.instantiate()
+	add_child(newWin)
+	newWin.global_position = gen_world.get_cell_pos_global(spawn_pos.x, spawn_pos.y)
+	
 
 func spawn_jimbob() -> void:
 	#Get player position
