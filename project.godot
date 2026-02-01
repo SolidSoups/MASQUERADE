@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 PlayerStateAutoload="*uid://d0ckxmnc3ma37"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor]
 
 movie_writer/fps=90

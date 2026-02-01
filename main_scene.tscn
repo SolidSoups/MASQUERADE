@@ -31,3 +31,10 @@ shadow_enabled = true
 environment = SubResource("Environment_0f027")
 
 [node name="World" parent="." unique_id=114703339 instance=ExtResource("1_0f027")]
+
+[node name="map_generator" parent="World" index="1" unique_id=954497573]
+width = 7
+height = 7
+room_chance = 0.4
+
+[editable path="World"]

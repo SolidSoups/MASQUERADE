@@ -226,8 +226,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="SuspicionMask" type="AnimatedSprite2D" parent="CanvasLayer/Control" unique_id=807388261]
 position = Vector2(108.99999, 496.99997)
@@ -271,6 +272,7 @@ scale = Vector2(0.2217693, 0.1818598)
 sprite_frames = SubResource("SpriteFrames_m4l1o")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control" unique_id=1945055446]
+visible = false
 layout_mode = 0
 offset_left = 16.0
 offset_top = 288.0
