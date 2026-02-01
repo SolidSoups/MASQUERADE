@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @onready var collision_body = $Area3D
+@onready var walk_sound = $WalkSound
 
 func _ready()->void:
 	PlayerStateAutoload.playerNode = self
@@ -30,11 +31,14 @@ func _physics_process(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	if direction:
+		if is_on_floor() and !walk_sound.playing:
+			walk_sound.play()
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		walk_sound.stop()
 
 	move_and_slide()
 	

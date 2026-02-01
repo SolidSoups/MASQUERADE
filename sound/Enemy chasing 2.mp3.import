@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cxru5cseddkel"
+path="res://.godot/imported/Enemy chasing 2.mp3-29e730d5ec4d57f9a1594c11c5d1b247.mp3str"
+
+[deps]
+
+source_file="res://sound/Enemy chasing 2.mp3"
+dest_files=["res://.godot/imported/Enemy chasing 2.mp3-29e730d5ec4d57f9a1594c11c5d1b247.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

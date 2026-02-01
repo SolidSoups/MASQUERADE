@@ -4,7 +4,13 @@ extends CharacterBody3D
 @onready var LOS_ray: RayCast3D = $Detection/LOSRay
 @onready var detection_cone = $Detection
 @onready var body_collision: CollisionShape3D = $BodyCollision
+@onready var sprite = $AnimatedSprite3D
+@onready var walk_sound = $WalkSound
+@onready var murmur_sound = $MurmurSound
+
 @export var player: CharacterBody3D
+enum enemy_presets{jimbob, guy,lady}
+@export var preset = enemy_presets.jimbob
 @export var speed = 2.0
 @export var hostile = true
 @export var wanderer = true
@@ -20,9 +26,9 @@ var direction = Vector3.DOWN
 func _ready():
 	actor_setup.call_deferred()
 	
-	
 func actor_setup():
 	await get_tree().physics_frame
+	sprite.frame = preset
 	
 	set_movement_target(movement_target_position)
 
@@ -33,7 +39,10 @@ func set_movement_target(movement_target: Vector3):
 	
 func _physics_process(delta: float) -> void:
 	
-
+	if rotation_degrees.dot(PlayerStateAutoload.playerNode.rotation_degrees) > 0:
+		sprite.frame = preset + 3
+	else:
+		sprite.frame = preset
 	
 	print_debug(states.keys()[state])
 	
@@ -111,6 +120,16 @@ func _physics_process(delta: float) -> void:
 	look_at(nav_agent.get_next_path_position())
 	rotation.x = 0
 	rotation.z = 0
+	
+	#sound
+	if state == states.idle or state == states.wandering:
+		if !murmur_sound.playing:
+			murmur_sound.play()
+	if state == states.idle:
+		walk_sound.stop()
+	elif !walk_sound.playing:
+		walk_sound.play()
+		
 	# Add the gravity.
 	if not is_on_floor():
 		

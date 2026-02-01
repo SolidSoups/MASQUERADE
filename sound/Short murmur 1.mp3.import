@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bj5jjm4eqdn1c"
+path="res://.godot/imported/Short murmur 1.mp3-e8916a44a25289f2c9d758ed2aaabceb.mp3str"
+
+[deps]
+
+source_file="res://sound/Short murmur 1.mp3"
+dest_files=["res://.godot/imported/Short murmur 1.mp3-e8916a44a25289f2c9d758ed2aaabceb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

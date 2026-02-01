@@ -15,6 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://b3mfwr4oqfk8h" path="res://art/big_mask.png" id="13_d3ie8"]
 [ext_resource type="Script" uid="uid://bhqxhsvj7djd6" path="res://Character/Status.gd" id="13_qp0ij"]
 [ext_resource type="Script" uid="uid://q5hh46enek66" path="res://Character/dialogue_menu.gd" id="14_vd2yh"]
+[ext_resource type="AudioStream" uid="uid://hs6a6tkvafe6" path="res://sound/Footstep player.mp3" id="16_a23hk"]
+[ext_resource type="Texture2D" uid="uid://b8kx3dal54jm" path="res://art/jimbob.png" id="16_n5h7u"]
+[ext_resource type="Texture2D" uid="uid://6ht8ar7iihhj" path="res://art/guy.png" id="17_80cqu"]
+[ext_resource type="AudioStream" uid="uid://ccw0aivd8uq8u" path="res://sound/Footstep player alternative.mp3" id="17_qp0ij"]
+[ext_resource type="Texture2D" uid="uid://bt27fs3iatxsp" path="res://art/lady.png" id="18_ylrrq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m61q5"]
 
@@ -150,6 +155,35 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_bpl0d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_n5h7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_80cqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_ylrrq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_n5h7u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_80cqu"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_6vlf6"]
+shuffle = true
+stream_count = 2
+stream_0 = ExtResource("16_a23hk")
+stream_1 = ExtResource("17_qp0ij")
+
 [node name="CharacterController" type="CharacterBody3D" unique_id=1868302625]
 collision_layer = 4
 collision_mask = 7
@@ -252,6 +286,17 @@ script = ExtResource("13_qp0ij")
 process_mode = 3
 script = ExtResource("14_vd2yh")
 
+[node name="Control" type="Control" parent="DialogueMenu" unique_id=291897117]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DialogueMenu/Control" unique_id=1781833011]
+position = Vector2(592, 568)
+scale = Vector2(0.31048387, 0.31048378)
+sprite_frames = SubResource("SpriteFrames_bpl0d")
+
 [node name="BoxContainer" type="BoxContainer" parent="DialogueMenu" unique_id=475931932]
 anchors_preset = 7
 anchor_left = 0.5
@@ -259,14 +304,14 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -212.0
-offset_top = -230.0
+offset_top = -128.0
 offset_right = 212.5
-offset_bottom = -129.0
+offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 0
 vertical = true
 
-[node name="Button" type="Button" parent="DialogueMenu/BoxContainer" unique_id=907167931]
+[node name="Button1" type="Button" parent="DialogueMenu/BoxContainer" unique_id=907167931]
 layout_mode = 2
 text = "example text correct"
 
@@ -278,4 +323,20 @@ text = "example less correct"
 layout_mode = 2
 text = "example suspect"
 
-[connection signal="pressed" from="DialogueMenu/BoxContainer/Button" to="DialogueMenu" method="_on_button_pressed"]
+[node name="Label" type="Label" parent="DialogueMenu" unique_id=728049247]
+offset_left = 272.0
+offset_top = 312.0
+offset_right = 888.0
+offset_bottom = 480.0
+theme = SubResource("Theme_n5h7u")
+label_settings = SubResource("LabelSettings_80cqu")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="WalkSound" type="AudioStreamPlayer3D" parent="." unique_id=21085658]
+stream = SubResource("AudioStreamPlaylist_6vlf6")
+
+[connection signal="pressed" from="DialogueMenu/BoxContainer/Button1" to="DialogueMenu" method="_on_button_pressed"]
+[connection signal="pressed" from="DialogueMenu/BoxContainer/Button2" to="DialogueMenu" method="_on_button_2_pressed"]
+[connection signal="pressed" from="DialogueMenu/BoxContainer/Button3" to="DialogueMenu" method="_on_button_3_pressed"]

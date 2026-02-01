@@ -8,6 +8,8 @@ var ears = false
 var dialogue = false
 var dialogue_cooldown = 0.0
 var dialogue_cooldown_max = 5.0
+enum dialogue_presets{jimobob,guy,lady}
+var dialogue_preset = dialogue_presets.guy
 var mask_up = true
 var seen = false
 
@@ -21,10 +23,12 @@ func _process(delta: float) -> void:
 	clampf(suspicion,0.0,suspicion_max)
 	suspicion_level = int(suspicion)
 
-func open_dialogue():
+func open_dialogue(preset: int) :
 	if dialogue_cooldown <= 0.0:
 		dialogue_cooldown = dialogue_cooldown_max
 		dialogue = true
+		dialogue_preset = preset
+
 	
 func close_dialogue():
 	dialogue = false

@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dff5stalldeor"]
+
+[ext_resource type="Texture2D" uid="uid://bnii48ldwawdc" path="res://art/eye_altar.png" id="1_1fh2c"]
+[ext_resource type="Script" uid="uid://dvkx5mqh4mbtk" path="res://altar_hit_box.gd" id="1_m005o"]
+[ext_resource type="Texture2D" uid="uid://cvu0iq0mjre0h" path="res://art/ears_altar.png" id="2_m005o"]
+[ext_resource type="Texture2D" uid="uid://db8mya2qp6jdm" path="res://art/altar_nose.png" id="3_oj0b2"]
+[ext_resource type="Texture2D" uid="uid://b67mq60kcrpon" path="res://art/altar_mouth.png" id="4_ew57r"]
+[ext_resource type="AudioStream" uid="uid://ejvia2fgs511" path="res://sound/Creepy ambience.mp3" id="6_oj0b2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aeleh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fle7e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1fh2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_m005o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oj0b2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ew57r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ew57r"]
+stream_count = 1
+stream_0 = ExtResource("6_oj0b2")
+
+[node name="FaceAltar" type="Node3D" unique_id=1387034717]
+
+[node name="AltarHitBox" type="Area3D" parent="." unique_id=844283748]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_m005o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AltarHitBox" unique_id=231572501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_aeleh")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="AltarHitBox" unique_id=2138313080]
+transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, 0, 1.25, 0)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_fle7e")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="AltarHitBox" unique_id=590707668]
+stream = SubResource("AudioStreamPlaylist_ew57r")
+unit_size = 20.0
+autoplay = true

@@ -3,6 +3,18 @@
 [ext_resource type="Script" uid="uid://c1ivlqvxljs37" path="res://navigationEnemy.gd" id="1_w5ntj"]
 [ext_resource type="Texture2D" uid="uid://b8kx3dal54jm" path="res://art/jimbob.png" id="2_2c0ij"]
 [ext_resource type="Script" uid="uid://npkfsem41fsr" path="res://enemy_interact_box.gd" id="3_185id"]
+[ext_resource type="Texture2D" uid="uid://6ht8ar7iihhj" path="res://art/guy.png" id="3_uq3g4"]
+[ext_resource type="Texture2D" uid="uid://bt27fs3iatxsp" path="res://art/lady.png" id="4_te5a5"]
+[ext_resource type="Texture2D" uid="uid://bdys73pimgywk" path="res://art/jimbob_back.png" id="5_q2hk4"]
+[ext_resource type="Texture2D" uid="uid://dpwxg26n8ae7a" path="res://art/guy_back.png" id="6_4varw"]
+[ext_resource type="Texture2D" uid="uid://dmcgepyebt201" path="res://art/lady_back.png" id="7_pvt45"]
+[ext_resource type="AudioStream" uid="uid://dfr0o2186kn5m" path="res://sound/Footstep enemy longer.mp3" id="9_4varw"]
+[ext_resource type="AudioStream" uid="uid://bj5jjm4eqdn1c" path="res://sound/Short murmur 1.mp3" id="10_movsg"]
+[ext_resource type="AudioStream" uid="uid://cgfds32qfb01d" path="res://sound/Short murmur 2.mp3" id="11_tfxac"]
+[ext_resource type="AudioStream" uid="uid://b5mvhj2qehgi1" path="res://sound/Short murmur 3.mp3" id="12_hpqxq"]
+[ext_resource type="AudioStream" uid="uid://beyq22ua5hqw3" path="res://sound/Laughing 1.mp3" id="13_d8l06"]
+[ext_resource type="AudioStream" uid="uid://ce87a05evpoh2" path="res://sound/Laughing 2.mp3" id="14_axilb"]
+[ext_resource type="AudioStream" uid="uid://cgqjsa7r0yl0f" path="res://sound/Laughing 3.mp3" id="15_lo0vk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_w5ntj"]
 
@@ -22,6 +34,21 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_185id")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uq3g4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_te5a5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q2hk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4varw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pvt45")
 }],
 "loop": true,
 "name": &"default",
@@ -30,6 +57,20 @@ animations = [{
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1hpgq"]
 size = Vector3(1, 1, 0.5)
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_pvt45"]
+stream_count = 1
+stream_0 = ExtResource("9_4varw")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uopvh"]
+random_pitch = 1.1553527
+streams_count = 6
+stream_0/stream = ExtResource("10_movsg")
+stream_1/stream = ExtResource("11_tfxac")
+stream_2/stream = ExtResource("12_hpqxq")
+stream_3/stream = ExtResource("13_d8l06")
+stream_4/stream = ExtResource("14_axilb")
+stream_5/stream = ExtResource("15_lo0vk")
 
 [node name="NavEnemy" type="Node3D" unique_id=744703773]
 
@@ -80,3 +121,12 @@ script = ExtResource("3_185id")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyBody3D/EnemyInteractBox" unique_id=2018061259]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 shape = SubResource("BoxShape3D_1hpgq")
+
+[node name="WalkSound" type="AudioStreamPlayer3D" parent="EnemyBody3D" unique_id=2002355093]
+stream = SubResource("AudioStreamPlaylist_pvt45")
+attenuation_model = 1
+unit_size = 3.0
+max_db = 4.0
+
+[node name="MurmurSound" type="AudioStreamPlayer3D" parent="EnemyBody3D" unique_id=1076384200]
+stream = SubResource("AudioStreamRandomizer_uopvh")

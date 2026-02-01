@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://beyq22ua5hqw3"
+path="res://.godot/imported/Laughing 1.mp3-e613520ec04437320e0f8983d3a84b3f.mp3str"
+
+[deps]
+
+source_file="res://sound/Laughing 1.mp3"
+dest_files=["res://.godot/imported/Laughing 1.mp3-e613520ec04437320e0f8983d3a84b3f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
